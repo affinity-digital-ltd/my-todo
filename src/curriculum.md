@@ -448,6 +448,11 @@ constructor () {
   this.addToTodoList = this.addToTodoList.bind(this)
 }
 ```
+Save the `Todo.js` file and then check that everything is now working as intended in the browser
+
+In the next part of the course, we will focus on creating a `todoItem` component, which also sllows us to mark an item as completed.
+
+This would also be the perfect time for us to commit our changes to git and push to github.  If you need help remembering how to do this, refer back to where we did this earlier.  Remember to use a descriptive message for the commit, rather than reusing the previous one.
 
 ### Creating our todoItem component
 
