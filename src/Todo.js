@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TodoItem from './TodoItem'
 
 class Todo extends Component {
   constructor () {
@@ -8,6 +9,7 @@ class Todo extends Component {
       todos: []
     }
     this.addItemToTodo = this.addItemToTodo.bind(this)
+    this.deleteItem = this.deleteItem.bind(this)
   }
 
   addItemToTodo (event) {
@@ -24,8 +26,20 @@ class Todo extends Component {
   buildTodoList () {
     const { todos } = this.state
 
-    return todos.map(todo => {
-      return <li key={todo}>{todo}</li>
+    return todos.map((todo, index) => {
+      return <li key={todo}>
+        <TodoItem item={todo} deleteItem={() => this.deleteItem(index)} />
+      </li>
+    })
+  }
+
+  deleteItem (item) {
+    const { todos } = this.state
+
+    todos.splice(item, 1)
+
+    this.setState({
+      todos: todos
     })
   }
 

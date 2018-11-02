@@ -63,8 +63,8 @@ To start off with we will need to become comfortable working with the command li
 ### Installing git and preparing to start our project
 
 1. Install git.  
-- If you are on a windows machine, then you will want to install git bash https://gitforwindows.org/ when following the interactive installer, using the default settings should be fine.
-- If you are on a mac git should be installed by default.
+    - If you are on a windows machine, then you will want to install git bash https://gitforwindows.org/ when following the interactive installer, using the default settings should be fine.
+    - If you are on a mac git should be installed by default.
 
 2. Open up a command prompt
 - On windows, you will want to run the application `git bash`
@@ -79,8 +79,8 @@ To start off with we will need to become comfortable working with the command li
 To initialise our React TODO project we will first need to install YARN, yarn is a package manager for JavaScript and allows you to install different libraries that you might need when building JavaScript applications.
 
 1. Install yarn:
-  - If you are on Windows then you can download the yarn installer from the following: https://yarnpkg.com/en/docs/install, you will also need to install NodeJS https://nodejs.org/en/download/
-  - On a mac, it is best to first install [homebrew](https://brew.sh/) and then run `brew install yarn`
+     - If you are on Windows then you can download the yarn installer from the following: https://yarnpkg.com/en/docs/install, you will also need to install NodeJS https://nodejs.org/en/download/
+     - On a mac, it is best to first install [homebrew](https://brew.sh/) and then run `brew install yarn`
 
 2. Initialise our new project `yarn create react-app my-todo` this will create a new folder called `my-todo` in our workspace directory and create all the necessary files and folders we need to start working with our React application.
 
@@ -102,15 +102,15 @@ Now that we have something to begin building our Todo application with, we first
 3. Now that we are in our app folder, we can create a new git repository, `git init`.  `create-react-app` may have done this automatically for us already, but it's good to just go through the motions anyway as not all packages will do this for us automatically.
 
 4. With our repository initialised we now want to create an account on github and link our todo project with our github project.
- - [Create an account on github](https://github.com/join?source=header-home)
- - [Start a new project on github](https://github.com/new) name the repository `my-todo`
- - You should now be presented with a screen to either create a new repository locally or add it to an existing repository, follow the instructions for `…or push an existing repository from the command line`
+    - [Create an account on github](https://github.com/join?source=header-home)
+    - [Start a new project on github](https://github.com/new) name the repository `my-todo`
+    - You should now be presented with a screen to either create a new repository locally or add it to an existing repository, follow the instructions for `…or push an existing repository from the command line`
 
 5. Now that we have linked our local repository with our github project we can save what we have so far and push it up to github
- - `git add -A` - This will add all of the files we have created so far so that we can create our first git commit.
- - `git commit -m "Initial commit"` - this will create a commit with the message "Initial commit" in our local repository, this commit is now stored so that if we make any changes later which we want to undo, we can rollback to this point in our project at any time.
- - `git push origin master` - now will push these local changes up to our github account so that they are stored in the cloud, this way if anything happens to our computer and we end up losing all of our work, we can always get our code back from github instead.
- - Once you have done that, we can now go back to our github repository page in the browser and refresh the page. Your files and folders show now all be visible
+    - `git add -A` - This will add all of the files we have created so far so that we can create our first git commit.
+    - `git commit -m "Initial commit"` - this will create a commit with the message "Initial commit" in our local repository, this commit is now stored so that if we make any changes later which we want to undo, we can rollback to this point in our project at any time.
+    - `git push origin master` - now will push these local changes up to our github account so that they are stored in the cloud, this way if anything happens to our computer and we end up losing all of our work, we can always get our code back from github instead.
+    - Once you have done that, we can now go back to our github repository page in the browser and refresh the page. Your files and folders show now all be visible
 
 ## Installing a text editor
 
@@ -214,13 +214,13 @@ Learn React
 We will replace this content in the next section.
 
 12. Now would be a good time to ensure we have saved any files we have edited and commit our changes to git.
- - Check you have saved all the files we have edited
- - In your terminal run the command `git status` this should print out a list of changes.  This can be useful for checking what files you are about to add and commit to git.
- - Run `git add -A` to add all files including those deleted ready to be committed.
- - Run `git commit -m "Renamed files"` this will create a new commit with the message `renamed files`
+    - Check you have saved all the files we have edited
+    - In your terminal run the command `git status` this should print out a list of changes.  This can be useful for checking what files you are about to add and commit to git.
+    - Run `git add -A` to add all files including those deleted ready to be committed.
+    - Run `git commit -m "Renamed files"` this will create a new commit with the message `renamed files`
 
 13. Now we can push these changes to github for storing, in case anything happens to our local machine and end up losing all the work we have done.
- - `git push origin feature/todo-form` this will push any commits we have made locally to origin (in this case our github account) to the branch `feature/todo-form`
+    - `git push origin feature/todo-form` this will push any commits we have made locally to origin (in this case our github account) to the branch `feature/todo-form`
 
 ### Adding a form to create new todo items
 
@@ -267,9 +267,9 @@ this.state = {
 Here we are setting the state to an object which has a key called `todos` (which we will refer to later in our app) and then assign it an empty array `[]`. We assign it an empty array, so that it is clear to us or any other developer which may work on the project, that we intend to propagate `todos` with a list of items.
 
 6. Now we need to create a function that will get called when we click the button `Add` to update this state with a new item.
-- We'll call this function `addItemToList()` so that it is clear as to what it actually does.
-- This will then add the item we type in the input field into the `todos` key of our React state.
-- Then we will need to update our `render()` function to display these items on the page.
+    - We'll call this function `addItemToList()` so that it is clear as to what it actually does.
+    - This will then add the item we type in the input field into the `todos` key of our React state.
+    - Then we will need to update our `render()` function to display these items on the page.
 
 7. Create the function `addItemToList()` below your `constructor()` function:
 ```javascript
@@ -358,26 +358,26 @@ Now if we go back to the browser and type something into the input field and cli
 
 16. Hmmm
 When we click `Add` it doesn't seem like it does anything still does it?  This is because we haven't told React what to do with our new `todos` state.  First, let's check the state is being updated.
-- Add the line `console.log(this.state.todos)` so that it is on the next line within our `render()` function:
-```javascript
-render () {
-  console.log(this.state.todos) // Print out the `todos` state into the browsers console
-  return (
-    ...
-  )
-}
-```
-- Go back to the browser and right click on the page and choose `inspect`, then click on the tab called `console`.  This is the javascript console of the browser which will show you any data we put in `console.log()` and any potential errors or bad practices that may be occurring within your app.
-- Now try typing something in your input field again and clicking `Add`
-- You should now see something like `["hello"]` in your browsers console.  This confirms that our `addItemToTodo()` function is working as intended; our `todos` state is now an array with one value, the value you just typed into the input field.
+    - Add the line `console.log(this.state.todos)` so that it is on the next line within our `render()` function:
+    ```javascript
+    render () {
+      console.log(this.state.todos) // Print out the `todos` state into the browsers console
+      return (
+        ...
+      )
+    }
+    ```
+    - Go back to the browser and right click on the page and choose `inspect`, then click on the tab called `console`.  This is the javascript console of the browser which will show you any data we put in `console.log()` and any potential errors or bad practices that may be occurring within your app.
+    - Now try typing something in your input field again and clicking `Add`
+    - You should now see something like `["hello"]` in your browsers console.  This confirms that our `addItemToTodo()` function is working as intended; our `todos` state is now an array with one value, the value you just typed into the input field.
 
 17. Displaying your todo list in your todo app.
 Now that we've confirmed that we are adding items to our todo list through the console, let's update our `render()` function to display them on the page:
-- We'll create a new function called `buildTodoList()` to generate our list of todos to display on the page
-- Add a call to this function in our `render()` function
-- Remove the `console.log(this.state.todos)` line
-- Add a fragment around our HTML in the `render()` function
-- Use the text from our todo item as the key (this should be safe to do as there shouldn't be an instance where we have two todo items which are exactly the same.  If this is a concern for you, then you could add validation to ensure that all items are unique)
+    - We'll create a new function called `buildTodoList()` to generate our list of todos to display on the page
+    - Add a call to this function in our `render()` function
+    - Remove the `console.log(this.state.todos)` line
+    - Add a fragment around our HTML in the `render()` function
+    - Use the text from our todo item as the key (this should be safe to do as there shouldn't be an instance where we have two todo items which are exactly the same.  If this is a concern for you, then you could add validation to ensure that all items are unique)
 ```javascript
 ...
 
@@ -412,7 +412,7 @@ Here we are pulling out the `todos` value from our state and assigning to a `tod
 Next we insert theses values as returned from the `buildTodoList()` function into an unordered list.
 
 18. Whenever we change or implement a piece of functionality we should test it first by hand, this is called QA (quality assurance), we need to check that things work as we intended them to.
-- Go ahead and add some items to your todo list to check that it's working as intended.
+    - Go ahead and add some items to your todo list to check that it's working as intended.
 
 19. You might have noticed that it is not quite working as intended, you can successfully add items to our todo list, but every time we add a new one, it replaces our old one.  The maximum number of items we can ever have is one, not exactly ideal.
 - Take this time to have a look through your code to see if you can spot where this might be happening.  It can often help to place `console.log()` throughout your code to help find where the route cause is.  If you do that, remember to take them out later.  If you manage to find the cause, don't worry too much about trying to fix it yourself, we will do it in the next step.
@@ -420,9 +420,9 @@ Next we insert theses values as returned from the `buildTodoList()` function int
 20. Fixing our list so that it doesn't replace old items.
 As you may have identified, the problem lies with our `addItemToTodo()` function.  It simply replaces our `todos` state with the most recent item, thus throwing away any of previous items. Let's go ahead and update this function so that it works as intended.
 
-- Pull out our current `todos` state into a variable
-- Add new todo item to our previous list of todos
-- Update the state with our new todo list
+    - Pull out our current `todos` state into a variable
+    - Add new todo item to our previous list of todos
+    - Update the state with our new todo list
 
 ```javascript
 addToTodoList (event) {
@@ -456,18 +456,209 @@ This would also be the perfect time for us to commit our changes to git and push
 
 ### Creating our todoItem component
 
+Now that we are in a position to add more functionality to our todo items, it would be a good time to create another component so that it can manage it's own state.
+
+- Create a new component called `todoItem`
+- Import the component into our `Todo` component
+- Add a checkbox so that we can mark a todo item as done
+- Pass the todo text from `Todo` into the `TodoItem` props
+
+1. Create a new file in the `src/` directory called `TodoItem.js`
+
+2. Create a new class called `TodoItem` which extends `Component` and add a `render()` funtion.
+```javascript
+import { Component } from 'react'
+
+class TodoItem extends Component {
+  render () {
+    
+  }
+}
+
+export default TodoItem
+
+```
+
+3. Update the `render()` function to return a checkbox and the todo item text.
+
+```javascript
+const { item } = this.props
+
+return <>
+  <input type='checkbox' name='todoItem' /> {item}
+</>
+```
+You'll notice here that we are also pulling out a value called `item` from the props.  We'll update `Todo` now to pass this value to the props of `TodoItem`
+
+4. Update the `buildTodoList()` function in `Todo` to use the new `TodoItem` component and pass the todo text value to `TodoItem` as a prop and import `TodoItem`
+
+```javascript
+import TodoItem from './TodoItem'
+
+...
+
+buildTodoList () {
+  const { todos } = this.state
+
+  return todos.map(todo => {
+    return <li key={todo}>
+      <TodoItem item={todo} />
+    </li>
+  })
+}
+```
+
+Now if you go back to your browser and add a new todo item you should see a checkbox next to it.  At this point if you click on the checkbox it doesn't mark the item as completed.  We will first need to track this in the state of our `TodoItem` component and then add styling through the use of CSS to make it look completed visually.
+
+5. Update `TodoItem` to track the state of completed items.
+    - Add a `constructor()` function to set the default state
+    - Add a `markAsDone()` function to update the state
+    - Update the render function to pass through the done state and update the styling
+
+
+Let's begin by editing `TodoItem` and adding our `constructor()` function
+
+```javascript
+...
+constructor () {
+  super()
+
+  // Set our default state for the todo item as not done
+  this.state = {
+    done: {}
+  }
+
+  // Delegate this to markAsDone
+  this.markAsDone = this.markAsDone.bind(this)
+}
+...
+```
+Now we can add our `markAsDone()` function to update the item as done when clicked on.
+
+```javascript
+...
+markAsDone (event) {
+  // Use the checkbox value from the form and change the text to strikethrough if the checkbox is checked
+  if (event.target.checked) {
+    this.setState({done: {textDecoration: 'line-through'}})
+  } else {
+    this.setState({done: {}})
+  }
+}
+...
+```
+
+Finally, we can update our `render()` function to pull in the `done` state use the `onClick()` callback of the checkbox to call our `markAsDone()` function.
+
+```javascript
+...
+render () {
+  // Assign our done state to a variable
+  const { done } = this.state
+  const { item } = this.props
+
+  // 
+  return <span style={done}> 
+    <input onClick={markAsDone} type='checkbox' name='todoItem' /> {item}
+  </span>
+}
+...
+```
+
+Now if we go back to the browser, add a new item and click the checkbox it should put a strikethrough across the text.  Unchecking it should then do the opposite.
+
+6. Commit your changes to git and push to github
+
 ### Deleting todo items
 
-## Writing tests
+Next we'll add the ability to delete todo items.
+ - Add `deleteItem()` function to `Todo`
+ - Pass `deleteItem()` function to `TodoItem` component as a prop
+ - Add delete link to `TodoItem`
 
+1. Add the `deleteItem()` function to `Todo`
 
+```javascript
+...
+
+deleteItem (item) {
+  const { todos } = this.state
+
+  todos.splice(item, 1)
+
+  this.setState({
+    todos: todos
+  })
+}
+
+...
+```
+
+2. Update `buildTodoList()` function to pass the `deleteItem()` function to `TodoItem` component
+
+```javascript
+...
+buildTodoList () {
+  const { todos } = this.state
+  
+  return todos.map((todo, index) => {
+    return <li key={todo}>
+      <TodoItem item={todo} deleteItem={() => this.deleteItem(index)} /> 
+    </li>
+  })
+}
+...
+```
+
+Here we wrap the function `deleteItem()` in a function so it is only called when we click on `delete`
+
+3. Bind `this` to `deleteItem()`
+
+```javascript
+constructor () {
+  super()
+
+  this.state = {
+    todos: []
+  }
+  this.addItemToTodo = this.addItemToTodo.bind(this)
+  this.deleteItem = this.deleteItem.bind(this)
+}
+```
+
+4. Update `TodoItem` to have a delete link and to call the `deleteItem()` function on click
+
+```javascript
+render () {
+  const { done } = this.state
+  const { item, deleteItem } = this.props
+
+  return <span style={done}>
+    <input type='checkbox' onClick={this.markAsDone} name='todoItem' />
+    {item}
+    <a href='#' onClick={deleteItem}>delete</a>
+  </span>
+}
+```
+
+Now when you add a todo item and click `delete` in the browser, it should remove that item from the list!
 
 ## Making our todo list look a bit prettier
 
-### Resetting styles
-
 ### Defining directory structure
 
-### 
+### Resetting styles
 
+### Adding styling to our form
 
+### Adding styling to todo list
+
+### Adding styling to links
+
+### Adding visual context to completed items
+
+## Writing tests
+
+### Why it is important to write automated tests
+
+### What about Test Driven Development (TDD)? 
