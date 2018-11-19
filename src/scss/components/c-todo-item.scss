@@ -1,0 +1,18 @@
+.c-todo-item {
+  display: flex;
+  justify-content: space-between;
+
+  &__task {
+    padding-left: 1rem;
+  }
+
+  &__content {
+    padding-left: 0.5em;
+    font-weight: bold;
+  }
+
+  &__delete {
+    color: darkred;
+    padding-right: 1rem;
+  }
+}

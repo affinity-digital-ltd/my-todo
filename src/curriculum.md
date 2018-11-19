@@ -643,19 +643,292 @@ render () {
 
 Now when you add a todo item and click `delete` in the browser, it should remove that item from the list!
 
+5. Commit your changes to git and push to github
+
 ## Making our todo list look a bit prettier
+
+Now that we have the basic functionality of our todo list in place, we can start to concentrate on making it look a bit prettier.
 
 ### Defining directory structure
 
+For our example app, we are going to use two CSS concepts called Block Element Modifier (BEM) and Inverted Triangle CSS (ITCSS).  These two methodologies will help to keep our CSS clean and more maintainable, especially if our project were to get particularly large.
+
+So let's move on to defining our directory structure
+
+1. Create a `scss` folder in the `src` directory.
+
+2. Create a `components` folder in our newly created `scss` folder.
+
+This is where the majority of our styling will live.
+
 ### Resetting styles
+
+Every browser has it's own defaulting styling built into it, this is so that it can style basic elements in the event the web site does not have any CSS.  However, every browser does this differently, therefore we need to reset the browsers default styling before we start to overlap our own defined styles.  If we don't do this, then it increases the likelyhood that our site will look different on different browsers, and this is something that we don't want to be dealing with or at least minimising.
+
+1. Create a file called `reset.scss` in the root of our `scss` folder.
+
+2. Head to [https://meyerweb.com/eric/tools/css/reset/](https://meyerweb.com/eric/tools/css/reset/) and copy the CSS on the page into your `reset.scss` file.
+
+### Adding some base styles
+
+Now that we have our reset in place, let's define some base styling, this will define how we want certain elements to look across the whole site.
+
+1. Create the file `base.scss` in the root of our `scss` folder.
+
+Copy and paste the following styles:
+
+```css
+body {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input {
+  padding-left: 0.5em;
+  border: 1px solid #d1d1d1;
+}
+
+input[type=checkbox] {
+  margin-left: 0;
+}
+
+button {
+  border: 1px solid white;
+  background-color: #6f31de;
+  color: white;
+  font-size: 1.1em;
+  padding: 0.5em;
+}
+
+h1 {
+  font-size: 2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+ul, ol {
+  padding-top: 1em;
+}
+
+li {
+  padding-top: 1em;
+}
+```
+
+### Include the reset and base styling into our application
+
+Now that we have defined the basic styling we need, we now have to import it into our app so that it can be picked up by the browser.
+
+1. Create the file `index.scss` in the `scss` folder.
+
+    We will use this file to import our `reset` and `base` styles.
+    
+    - In `index.scss`:
+    ```css
+    @import "./reset";
+    @import "./base";
+    ```
+
+2. Update `index.js` to pull in our new `index.scss` stylesheet.
+
+    - Update the line:
+    ```javascript
+    import '.index.css';
+    ```
+    to: 
+    ```javascript
+    import './scss/index.scss';
+    ```
+
+3. Delete the file `index.css` as it's no longer needed.
+
+Now if you go back to the browser you should be presented with an error message.  It's basically stating that we are now using `.scss` files rather than regular CSS ones and it doesn't know how to interpret it. We'll need to install `node-sass` for that to work.
+
+4. Open a new teminal window and `cd` to your `my-todo` folder.
+
+5. Type in the following and press enter `yarn add node-sass`.
+
+6. Once that command has finished, go back to the terminal where you started your application.  Then press `ctrl+c` to cancel the running application (your todo react app). then run `yarn start` again in that terminal.  This should then restart your application and open another tab in your browser.  At this point, your app should be running again without any errors and the styling of your app should start to look a little different.
 
 ### Adding styling to our form
 
+1. Create a file called `c-form.scss` in the `scss/components` folder.
+
+Enter the contents:
+
+```css
+.c-form {
+  &__input-group {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    
+    input {
+      flex-grow: 1;
+    }
+  }
+}
+```
+
+Now we need update our HTML to use these classes.
+
+2. In the file `Todo.js` update the form to the following:
+
+```javascript
+<form onSubmit={this.addItemToTodo} className='c-form'>
+  <div className='c-form__input-group'>
+    <input type='text' placeholder='What would you like to do?' name='todoItem' autoComplete='off' />
+    <button type='submit'>Add</button>
+  </div>
+</form>
+```
+Finally, we need to create a scss file for our `Todo.js` class which imports all the stylesheets we need specifically for this component 
+
+3. Create the file `todo.scss` in `/src/scss` and add the following:
+
+```css
+@import './components/c-form.scss';
+```
+
+4. Import the new `todo.scss` stylesheet into our `Todo` component:
+
+```javascript
+import './scss/todo.scss'
+```
+
+Now when you go back to your browser you should see that our input field and button look a little better.  The rest of the app should continue to function as intended.
+
 ### Adding styling to todo list
 
-### Adding styling to links
+With our form out the way, we can now look at styling our todo list.
 
-### Adding visual context to completed items
+1. Create a file called `c-todo-item.scss` in the folder `src/scss/components/`:
+
+Enter the following contents in the newly created file:
+
+```css
+.c-todo-item {
+  display: flex;
+  justify-content: space-between;
+
+  &__task {
+    padding-left: 1rem;
+  }
+
+  &__content {
+    padding-left: 0.5em;
+    font-weight: bold;
+  }
+
+  &__delete {
+    color: darkred;
+    padding-right: 1rem;
+  }
+}
+```
+
+2. Create a `todo-item.scss` file in `src/scss/` and import the CSS components we need:
+
+```css
+@import "components/c-todo-item.scss";
+```
+
+3. Update the `TodoItem.js` file to make use of the new CSS classes:
+
+```javascript
+return (
+  <div className='c-todo-item'>
+    <label className='c-todo-item__task'>
+      <input type='checkbox' onClick={this.markAsDone} /><span style={done}>{item}</span>
+    </label>
+    <a onClick={deleteItem} className='c-todo-item__delete'>Delete</a>
+  </div>
+)
+```
+
+4. Update `TodoItem.js` to import it's stylesheet:
+
+```javascript
+import './scss/todo-item.scss'
+```
+
+Finally, let's refactor `TodoItem.js` a little to use a class for the strikethrough when a todo item is completed, rather than using the inline style we originally used.
+
+5. Create a folder called `utilities` in the `scss/` folder.
+
+6. Create the file `u-strikethrough.scss` in the folder `scss/utilities` and add the following:
+
+```css
+.u-strikethrough {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+```
+
+Update `scss/todo-item.scss` to import the new utility class
+
+```css
+@import "components/c-todo-item.scss";
+@import "utilities/u-strikethrough.scss";
+```
+
+7. Refactor the todoItem `<span>` to use our new utility class rather than inline styling.
+
+```javascript
+render () {
+  const { done } = this.state
+  const { item, deleteItem } = this.props
+
+  return (
+    <div className='c-todo-item'>
+      <label className='c-todo-item__task'>
+        <input type='checkbox' onClick={this.markAsDone} /><span className={done}>{item}</span>
+      </label>
+      <a onClick={deleteItem} className='c-todo-item__delete'>Delete</a>
+    </div>
+  )
+}
+```
+
+As you'll see here, we are using the `classes` variable from our state to set the strikethrough class on the todo item text. So let's update our default state and function to update the classes when an item has been marked as done.
+
+Update the constructor:
+```javascript
+constructor () {
+  super()
+
+  this.state = {
+    done: 'c-todo-item__content'
+  }
+
+  this.markAsDone = this.markAsDone.bind(this)
+}
+```
+
+Update the `markAsDone` function:
+```javascript
+markAsDone (event) {
+  let classes
+
+  event.target.checked ? classes = 'c-todo-item__content u-strikethrough' : classes = 'c-todo-item__content'
+
+  this.setState({
+    done: classes
+  })
+}
+```
+
+You might notice a new pattern here: `true ? then : else`.  This is an inline if.  If the first part of the statement evaluates to `true`, in our case `event.target.checked`, then evaluate the code after the `?` if it evalutes to `false` then evaluate the code after the `:`.
 
 ## Writing tests
 

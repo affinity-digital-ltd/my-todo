@@ -1,0 +1,11 @@
+.c-form {
+  &__input-group {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    
+    input {
+      flex-grow: 1;
+    }
+  }
+}

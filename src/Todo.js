@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import TodoItem from './TodoItem'
 
+import './scss/todo.scss'
+
 class Todo extends Component {
   constructor () {
     super()
@@ -46,8 +48,8 @@ class Todo extends Component {
   render () {
     return (
       <>
-        <form onSubmit={this.addItemToTodo}>
-          <div>
+        <form onSubmit={this.addItemToTodo} className='c-form'>
+          <div className='c-form__input-group'>
             <input type='text' placeholder='What would you like to do?' name='todoItem' autoComplete='off' />
             <button type='submit'>Add</button>
           </div>
