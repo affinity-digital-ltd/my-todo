@@ -934,4 +934,48 @@ You might notice a new pattern here: `true ? then : else`.  This is an inline if
 
 ### Why it is important to write automated tests
 
+Bugs are a nature of software/web development as we are all only human at the end of the day.  However, there is something we can do to try and minimise the number and scale of bugs.
+
+By writing automated tests for any code that we write we can ensure that a feature works as intended and also that it fails as intended if it receives incorrect information.  By having a test suite which makes these checks for us whenever we make changes to a code base we can be confident that we haven't introduced any new bugs, or reintroduced old ones.
+
+This also allows for us to clean up old code so that it is more maintainable, readable and sclable in future in a confident manner.
+
+Additionally, if something is hard to test, then more often than not it is because we have implemented code in a confusing manner and so having a test suite can also drive us forward by making code easier for us to read and change in future.
+
 ### What about Test Driven Development (TDD)? 
+
+TDD is the process of writing tests before any code has been implemented.  This can be extremely helpful in ensuring that the code we write does what is intended, is covered by tests and also allows for writing cleaner code from the start.  However, sometimes it can be hard to know what to test before you have figured out a solution for the problem.  Therefore, it may not always be possible to follow a TDD approach.  Being flexible with your approach is often the best approach.
+
+## Snapshot testing
+
+First we are going to implement snapshot testing to ensure our components render correctly.  What snapshot testing does is render out any component(s) we select and creates a text file in the JSON format which represents all the data that the component comprises of and saves it for future reference.  If in future the saved snapshot and the new shapshot differ our test suite will raise an error so that we can inspect the differences, determine if the change is intended (in this case we simply update the saved snapshot with the new one) or if it is a regression, in which case we can fix the regression until the two snapshots match again.
+
+1. Install dependencies `yarn add --dev react-test-renderer enzyme enzyme-adapter-react-16`
+2. Configure `Jest` (the library we use for writing tests) to use `enzyme` (a library from Airbnb to make testing more convenient)
+   - Create a file called `setupTests.js` in `/src`:
+```javascript
+import { configure } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+configure({ adapter: new Adapter() })
+``` 
+3. Rename `Todo.test.js` to `TodoItem.test.js` and replace the contents with the following:
+```javascript
+import React from 'react'
+import ReactDOM from 'react-dom'
+import TodoItem from './TodoItem'
+
+import { shallow } from 'enzyme'
+
+describe('<TodoItem />', () => {
+  it('should match the snapshot', () => {
+    const wrapper = shallow(<TodoItem />)
+
+    expect(wrapper).toMatchSnapshot
+  })
+})
+```
+
+Here we are importing the libraries we need for the test (react, react-dom and enzyme) and then the component we want to test, in this case `TodoItem`.
+
+
+

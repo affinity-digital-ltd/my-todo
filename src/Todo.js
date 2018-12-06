@@ -58,7 +58,7 @@ class Todo extends Component {
           {this.buildTodoList()}
         </ul>
       </>
-    );
+    )
   }
 }
 
