@@ -14,9 +14,7 @@ class TodoItem extends Component {
   }
 
   markAsDone (event) {
-    let classes
-
-    event.target.checked ? classes = 'c-todo-item__content u-strikethrough' : classes = 'c-todo-item__content'
+    const classes = event.target.checked ? 'c-todo-item__content u-strikethrough' : 'c-todo-item__content'
 
     this.setState({
       done: classes
@@ -32,7 +30,7 @@ class TodoItem extends Component {
         <label className='c-todo-item__task'>
           <input type='checkbox' onClick={this.markAsDone} /><span className={done}>{item}</span>
         </label>
-        <a onClick={deleteItem} className='c-todo-item__delete'>Delete</a>
+        <button onClick={deleteItem} className='c-todo-item__delete' data-behavior='delete'>Delete</button>
       </div>
     )
   }

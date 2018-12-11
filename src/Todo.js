@@ -8,21 +8,25 @@ class Todo extends Component {
     super()
 
     this.state = {
-      todos: []
+      todos: [],
+      value: ''
     }
     this.addItemToTodo = this.addItemToTodo.bind(this)
     this.deleteItem = this.deleteItem.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   addItemToTodo (event) {
     event.preventDefault() // Do not submit the form and cause the page to refresh
-    const item = event.target.todoItem.value
-    event.target.todoItem.value = ''
     const { todos } = this.state
+    const item = this.state.value
 
     todos.push(item)
 
-    this.setState({todos: todos})
+    this.setState({
+      todos: todos,
+      value: ''
+    })
   }
 
   buildTodoList () {
@@ -32,6 +36,12 @@ class Todo extends Component {
       return <li key={todo}>
         <TodoItem item={todo} deleteItem={() => this.deleteItem(index)} />
       </li>
+    })
+  }
+
+  handleChange (event) {
+    this.setState({
+      value: event.target.value
     })
   }
 
@@ -50,8 +60,8 @@ class Todo extends Component {
       <>
         <form onSubmit={this.addItemToTodo} className='c-form'>
           <div className='c-form__input-group'>
-            <input type='text' placeholder='What would you like to do?' name='todoItem' autoComplete='off' />
-            <button type='submit'>Add</button>
+            <input type='text' placeholder='What would you like to do?' value={this.state.value} name='todoItem' autoComplete='off' onChange={this.handleChange} />
+            <button type='submit' className='c-button'>Add</button>
           </div>
         </form>
         <ul>

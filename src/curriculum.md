@@ -258,20 +258,24 @@ class App extends Component {
 
 4. Then inside our constructor function we need to call `super()` so that it calls any original code that React has in place for a React Component to work correctly (this code is not visible to us, but exists within the internals of React itself)
 
-5. On a new line below our call to `super()` we will set the default state for the todo list:
+5. On a new line below our call to `super()` we will set the default state for the todo list and the default input value for our todo item:
 ```javascript
 this.state = {
- todos: []
+  todos: [],
+  value: ''
 }
 ```
 Here we are setting the state to an object which has a key called `todos` (which we will refer to later in our app) and then assign it an empty array `[]`. We assign it an empty array, so that it is clear to us or any other developer which may work on the project, that we intend to propagate `todos` with a list of items.
 
-6. Now we need to create a function that will get called when we click the button `Add` to update this state with a new item.
-    - We'll call this function `addItemToList()` so that it is clear as to what it actually does.
+We have also added the `value` key to our state, as this will log the todo item value from our input field.
+
+6. Now we need to create a function that will get called when we click the button `Add` to update this state with a new item and a function that will get called when we type text into the input field.
+    - We'll call the first function `addItemToList()` so that it is clear as to what it actually does.
     - This will then add the item we type in the input field into the `todos` key of our React state.
+    - The second function will be `handleChange()` which will log what is typed into the input field
     - Then we will need to update our `render()` function to display these items on the page.
 
-7. Create the function `addItemToList()` below your `constructor()` function:
+7. Create the function `addItemToList()` and `handleChange()` below your `constructor()` function:
 ```javascript
 constructor () {
  ...
@@ -281,18 +285,25 @@ addItemToTodo () {
 
 }
 
+handleChange () {
+
+}
+
 render () {
   ...
 }
 ```
 
-8. Next we'll have it accept the argument `event`
+8. Next we'll have them both accept the argument `event`
 ```javascript
 addItemToTodo (event) {
 
 }
+
+handleChange (event) {
+
+}
 ```
-This is so that we can pull out the value of the text you entered into the input field from your app and add it to the todo list.
 
 9. We also need to tell React not to treat the form in the traditional sense, where it makes a request and then reloads the page, we want to stay on the current page and just update the state:
 ```javascript
@@ -302,22 +313,35 @@ addItemToTodo (event) {
 }
 ```
 
+We'll also use the event to pull out what the user has typed and save it to the state so that we can use it to add to our todo list later
+
+```javascript
+handleChange (event) {
+  this.setState({
+    value: event.target.value
+  })
+}
+```
+
 10. Next we'll save the value of the text input into a variable for us to use later by adding it to the `todos` state.
 ```javascript
 addItemToTodo (event) {
   event.preventDefault() // Do not submit the form and cause the page to refresh
-  const item = event.target.todoItem.value
+  const item = this.state.value
 }
 ``` 
-`target` here refers to the form and `todoItem` is the name we gave the `<input>` in the form.  Finally `value` refers to the actual value the user submitted into the input field.
+`this.state.value` here refers to the content in the input field that the user types in as a todo item.
 
 11. Clear the input field
 As we are preventing the page from refreshing, we will want to reset the value of the input field that the user initially input.  So that if they want to add another todo item, they don't need to first delete the contents within the input field.
 ```javascript
 addItemToTodo (event) {
   event.preventDefault() // Do not submit the form and cause the page to refresh
-  const item = event.target.todoItem.value
-  event.target.todoItem.value = ''
+  const item = this.state.value
+
+  this.setState({
+    value: ''
+  })
 }
 ``` 
 Here we are setting the value of the input field back to an empty string for the users convenience.
@@ -326,31 +350,39 @@ Here we are setting the value of the input field back to an empty string for the
 ```javascript
 addItemToTodo (event) {
   event.preventDefault() // Do not submit the form and cause the page to refresh
-  const item = event.target.todoItem.value
-  event.target.todoItem.value = ''
+  const item = this.state.value
 
-  this.setState({todos: [item]})
+  this.setState({
+    todos: [item],
+    value: ''
+  })
 }
 ``` 
 Here we are updating the `todos` state to be an array with one value of `item` the content that was input into the input field.
 
-13. Allow our new `addItemToTodo()` function have access to `this`
-In our `addItemToTodo()` function we are accessing Reacts state through the use of `this` but our function will not know how to do this, we we will need to give it access.  To do this, we will need to add another line to our `constructor()` function
+13. Allow our new `addItemToTodo()` and `handleChange()` functions have access to `this`
+In our `addItemToTodo()` and `handleChange()` functions we are accessing Reacts state through the use of `this` but our function will not know how to do this, we we will need to give it access.  To do this, we will need to add another line to our `constructor()` function
 ```javascript
 constructor () {
   super()
 
   this.state = {
-    todos: []
+    todos: [],
+    value: ''
   }
 
   this.addItemToTodo = this.addItemToTodo.bind(this)
+  this.handleChange = this.handleChange.bind(this)
 }
 ```
 
-14. Finally, the last piece of the puzzle is to tell our form to use our new `addItemToTodo()` function when we submit the form (click on the `Add` button)
+14. Finally, the last piece of the puzzle is to tell our form to use our new `addItemToTodo()` function when we submit the form (click on the `Add` button).
 ```javascript
 <form onSubmit={this.addItemToTodo}>
+```
+And for our input field to call `handleChange()` whenever something is typed into the input field
+```javascript
+<input type='text' placeholder='What would you like to do?' value={this.state.value} name='todoItem' autoComplete='off' onChange={this.handleChange} />
 ```
 
 15. Test our new functionality
@@ -394,7 +426,7 @@ render () {
     <>
       <form onSubmit={this.addItemToTodo}>
         <div>
-          <input type='text' placeholder='What would you like to do?' name='todoItem' autoComplete='off' />
+          <input type='text' placeholder='What would you like to do?' value={this.state.value} name='todoItem' autoComplete='off' onChange={this.handleChange} />
           <button type='submit'>Add</button>
         </div>
       </form>
@@ -425,29 +457,20 @@ As you may have identified, the problem lies with our `addItemToTodo()` function
     - Update the state with our new todo list
 
 ```javascript
-addToTodoList (event) {
+addItemTodoList (event) {
   event.preventDefault()
-  const item = event.target.todoItem.value
-  event.target.todoItem.value = ''
+  const item = this.state.value
   const { todos } = this.state
 
   todos.push(item)
 
-  this.setState({todos: todos})
+  this.setState({
+    todos: todos,
+    value: ''
+  })
 }
 ```
 
-As we are also now updating the state, we will also need to pass in `this` to our function.
-
-```javascript
-...
-
-constructor () {
-  ...
-
-  this.addToTodoList = this.addToTodoList.bind(this)
-}
-```
 Save the `Todo.js` file and then check that everything is now working as intended in the browser
 
 In the next part of the course, we will focus on creating a `todoItem` component, which also sllows us to mark an item as completed.
@@ -515,7 +538,6 @@ Now if you go back to your browser and add a new todo item you should see a chec
     - Add a `markAsDone()` function to update the state
     - Update the render function to pass through the done state and update the styling
 
-
 Let's begin by editing `TodoItem` and adding our `constructor()` function
 
 ```javascript
@@ -557,7 +579,6 @@ render () {
   const { done } = this.state
   const { item } = this.props
 
-  // 
   return <span style={done}> 
     <input onClick={markAsDone} type='checkbox' name='todoItem' /> {item}
   </span>
@@ -587,7 +608,8 @@ deleteItem (item) {
   todos.splice(item, 1)
 
   this.setState({
-    todos: todos
+    todos: todos,
+    value: ''
   })
 }
 
@@ -619,9 +641,11 @@ constructor () {
   super()
 
   this.state = {
-    todos: []
+    todos: [],
+    value: ''
   }
   this.addItemToTodo = this.addItemToTodo.bind(this)
+  this.handleChange = this.handleChange.bind(this)
   this.deleteItem = this.deleteItem.bind(this)
 }
 ```
@@ -636,7 +660,7 @@ render () {
   return <span style={done}>
     <input type='checkbox' onClick={this.markAsDone} name='todoItem' />
     {item}
-    <a href='#' onClick={deleteItem}>delete</a>
+    <button onClick={deleteItem} data-behavior='delete'>delete</button>
   </span>
 }
 ```
@@ -698,14 +722,6 @@ input[type=checkbox] {
   margin-left: 0;
 }
 
-button {
-  border: 1px solid white;
-  background-color: #6f31de;
-  color: white;
-  font-size: 1.1em;
-  padding: 0.5em;
-}
-
 h1 {
   font-size: 2em;
   padding-top: 1em;
@@ -764,40 +780,69 @@ Now if you go back to the browser you should be presented with an error message.
 
 1. Create a file called `c-form.scss` in the `scss/components` folder.
 
-Enter the contents:
+    Enter the contents:
 
-```css
-.c-form {
-  &__input-group {
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    
-    input {
-      flex-grow: 1;
+    ```css
+    .c-form {
+      &__input-group {
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        
+        input {
+          flex-grow: 1;
+        }
+      }
     }
-  }
-}
-```
+    ```
 
-Now we need update our HTML to use these classes.
+    Now we need update our HTML to use these classes.
 
-2. In the file `Todo.js` update the form to the following:
+    In the file `Todo.js` update the form to the following:
 
-```javascript
-<form onSubmit={this.addItemToTodo} className='c-form'>
-  <div className='c-form__input-group'>
-    <input type='text' placeholder='What would you like to do?' name='todoItem' autoComplete='off' />
-    <button type='submit'>Add</button>
-  </div>
-</form>
-```
+    ```javascript
+    <form onSubmit={this.addItemToTodo} className='c-form'>
+      <div className='c-form__input-group'>
+        <input type='text' placeholder='What would you like to do?' value={this.state.value} name='todoItem' autoComplete='off' onChange={this.handleChange} />
+        <button type='submit'>Add</button>
+      </div>
+    </form>
+    ```
+
+2. Create a file called `c-button.scss` in the `scss/components` folder.
+
+    Enter the contents:
+
+    ```css
+    .c-button {
+      border: 1px solid white;
+      background-color: #6f31de;
+      color: white;
+      font-size: 1.1em;
+      padding: 0.5em;
+    }
+    ```
+
+    Now we need update our HTML to use this class.
+
+    In the file `Todo.js` update the button to the following:
+
+    ```javascript
+    <form onSubmit={this.addItemToTodo} className='c-form'>
+      <div className='c-form__input-group'>
+        <input type='text' placeholder='What would you like to do?' value={this.state.value} name='todoItem' autoComplete='off' onChange={this.handleChange} />
+        <button type='submit' className='c-button'>Add</button>
+      </div>
+    </form>
+    ```
+
 Finally, we need to create a scss file for our `Todo.js` class which imports all the stylesheets we need specifically for this component 
 
 3. Create the file `todo.scss` in `/src/scss` and add the following:
 
 ```css
 @import './components/c-form.scss';
+@import './components/c-button.scss';
 ```
 
 4. Import the new `todo.scss` stylesheet into our `Todo` component:
@@ -833,6 +878,8 @@ Enter the following contents in the newly created file:
   &__delete {
     color: darkred;
     padding-right: 1rem;
+    border: 0;
+    background: none;
   }
 }
 ```
@@ -851,7 +898,7 @@ return (
     <label className='c-todo-item__task'>
       <input type='checkbox' onClick={this.markAsDone} /><span style={done}>{item}</span>
     </label>
-    <a onClick={deleteItem} className='c-todo-item__delete'>Delete</a>
+    <button onClick={deleteItem} className='c-todo-item__delete' data-behavior='delete'>Delete</button>
   </div>
 )
 ```
@@ -894,7 +941,7 @@ render () {
       <label className='c-todo-item__task'>
         <input type='checkbox' onClick={this.markAsDone} /><span className={done}>{item}</span>
       </label>
-      <a onClick={deleteItem} className='c-todo-item__delete'>Delete</a>
+      <button onClick={deleteItem} className='c-todo-item__delete' data-behavior='delete'>Delete</button>
     </div>
   )
 }
@@ -918,9 +965,7 @@ constructor () {
 Update the `markAsDone` function:
 ```javascript
 markAsDone (event) {
-  let classes
-
-  event.target.checked ? classes = 'c-todo-item__content u-strikethrough' : classes = 'c-todo-item__content'
+  const classes = event.target.checked ? 'c-todo-item__content u-strikethrough' : 'c-todo-item__content'
 
   this.setState({
     done: classes
@@ -929,6 +974,8 @@ markAsDone (event) {
 ```
 
 You might notice a new pattern here: `true ? then : else`.  This is an inline if.  If the first part of the statement evaluates to `true`, in our case `event.target.checked`, then evaluate the code after the `?` if it evalutes to `false` then evaluate the code after the `:`.
+
+8. Commit your changes and push to Github
 
 ## Writing tests
 
@@ -958,10 +1005,10 @@ import { configure } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 configure({ adapter: new Adapter() })
 ``` 
-3. Rename `Todo.test.js` to `TodoItem.test.js` and replace the contents with the following:
+3. Create a `__tests__` folder in `/src`
+4. Rename `Todo.test.js` to `TodoItem.test.js`, move it to `__tests__` and replace the contents with the following:
 ```javascript
 import React from 'react'
-import ReactDOM from 'react-dom'
 import TodoItem from './TodoItem'
 
 import { shallow } from 'enzyme'
@@ -970,12 +1017,110 @@ describe('<TodoItem />', () => {
   it('should match the snapshot', () => {
     const wrapper = shallow(<TodoItem />)
 
-    expect(wrapper).toMatchSnapshot
+    expect(wrapper).toMatchSnapshot()
   })
 })
 ```
 
-Here we are importing the libraries we need for the test (react, react-dom and enzyme) and then the component we want to test, in this case `TodoItem`.
+Here we are importing the libraries we need for the test (react) and then the component we want to test, in this case `TodoItem`.  Then we import the `shallow` function from `enzyme` which allows us to render the `TodoItem` component and none of it's children and then check this against the snapshot for the test.
 
+5. If we now run our tests `yarn test` we should see that this test passes.
 
+### Test the Todo component
 
+1. Create a file called `Todo.test.js` in `__tests__`
+
+2. Add the contents:
+```javascript
+import React from 'react'
+import Todo from './Todo'
+
+import { shallow, mount } from 'enzyme'
+
+describe('<Todo />', () => {
+  it('should match the snapshot', () => {
+    const wrapper = shallow(<Todo />)
+
+    expect(wrapper).toMatchSnapshot()
+  })
+})
+```
+
+This code should not be fairly self explanitory.
+
+3. Now we should also add tests to ensure that the functionality of our todo app works as intended:
+
+Add the following under the first `it` block ("should match the snapshot")
+
+```javascript
+...
+
+it('should add a new item to the list', () => {
+  // Load the whole component including it's children
+  const wrapper = mount(<Todo />)
+
+  // Find the input field
+  const input = wrapper.find('[name="todoItem"]')
+
+  // Type in the word 'test'
+  input.simulate('change', { target: { value: 'test' } })
+
+  // Find our 'Add' button and click it
+  const button = wrapper.find('[type="submit"]')
+  button.simulate('submit')
+
+  // There should now be a todo item in the list
+  expect(wrapper.find('.c-todo-item__content').text()).toEqual('test')
+})
+
+it('should mark the item as done', () => {
+  const wrapper = mount(<Todo />)
+
+  const input = wrapper.find('[name="todoItem"]')
+  input.simulate('change', { target: { value: 'test' } })
+  const button = wrapper.find('[type="submit"]')
+  button.simulate('submit')
+
+  // Find the checkbox for our todo item and click it
+  const checkbox = wrapper.find('[type="checkbox"]')
+  checkbox.simulate('click', { target: { checked: true } })
+
+  // It should now be marked as done
+  expect(wrapper.find('span').hasClass('u-strikethrough')).toEqual(true)
+})
+
+it('should remove the todo item', () => {
+  const wrapper = mount(<Todo />)
+
+  const input = wrapper.find('[name="todoItem"]')
+  input.simulate('change', { target: { value: 'test' } })
+  const button = wrapper.find('[type="submit"]')
+  button.simulate('submit')
+
+  expect(wrapper.find('span').length).toEqual(1)
+  
+  // Click the delete button for the todo item
+  const del = wrapper.find('[data-behavior="delete"]')
+  del.simulate('click')
+
+  // It should now have been removed
+  expect(wrapper.find('span').length).toEqual(0)
+})
+
+...
+```
+
+4. If we now run our tests `yarn test` we should see that this test passes.
+
+5. Commit your changes and push to Github.
+
+# Extensions
+
+Now that you have had a basic introduction to web development with ReactJS, here are some extensions for you to try (listed in order of difficulty):
+
+ - Update the CSS using media queries to make the app look good on both tablets and desktop screens
+ - Change all of the CSS to your own design
+ - Add CSS animations for adding todo items, marking them as complete and deleting them
+ - Implement GraphQL to save your todo items so that you don't lose them if you refresh the page or close the browser
+ - Add the concept of labels, so that you can classify your todos and filter by label
+ - Build something of your own in ReactJS
