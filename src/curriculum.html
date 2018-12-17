@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>curriculum.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="introduction-to-web-development-course">Introduction to Web Development Course</h1>
+<p>In this introductory course we will be covering the following technologies:</p>
+<ul>
+<li>Command line</li>
+<li>Git</li>
+<li>Github</li>
+<li>Yarn</li>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+<li>ReactJS</li>
+<li>Visual Studio Code</li>
+</ul>
+<p>The course will walk you through most of what you need to do in order to complete the development of a Todo application which you can then use to manage your daily priorities.  It will cover the most basic of skills in order to become a good web developer and will give you a taste of what it’s like to work in the industry.  Hopefully, you will enjoy the course and want to take the next step to becoming a commercial Web Developer.</p>
+<h1 id="learning-the-basics-of-html">Learning the basics of HTML</h1>
+<h2 id="elements">Elements</h2>
+<h2 id="attributes">Attributes</h2>
+<h1 id="learning-the-basics-of-css">Learning the basics of CSS</h1>
+<h2 id="classes">Classes</h2>
+<h2 id="properties">Properties</h2>
+<h1 id="learning-the-fundamentals-of-javascript">Learning the fundamentals of JavaScript</h1>
+<h2 id="strings">Strings</h2>
+<h2 id="integers">Integers</h2>
+<h2 id="variables">Variables</h2>
+<h3 id="var">var</h3>
+<h3 id="let">let</h3>
+<h3 id="const">const</h3>
+<h2 id="arrays">Arrays</h2>
+<h2 id="objects">Objects</h2>
+<h2 id="functions">Functions</h2>
+<h2 id="classes">Classes</h2>
+<h1 id="working-on-your-todo-project">Working on your Todo Project</h1>
+<h2 id="command-line-and-git">Command Line and Git</h2>
+<p>To start off with, we will need to become comfortable working with the command line as this will be the place to go to start a new project and to save our work on <a href="https://github.com">GitHub</a>.  Github is an online repository in which we can save versions of our code.  It is a great site that the majority of web developers use to host their code.  GitHub is integrated with git, a command line application used for saving versions of your code locally and also for pushing your changes up to the GitHub website.</p>
+<h3 id="installing-git-and-preparing-to-start-our-project">Installing git and preparing to start our project</h3>
+<ol>
+<li>
+<p>Install git.</p>
+<ul>
+<li>If you are on a windows machine, then you will want to install <a href="https://gitforwindows.org/">git bash</a>. When following the interactive installer, using the default settings should be fine.</li>
+<li>If you are on a mac <code>git</code> should be installed by default.</li>
+</ul>
+</li>
+<li>
+<p>Open up a command prompt</p>
+</li>
+</ol>
+<ul>
+<li>On windows, you will want to run the application <code>Git Bash</code></li>
+<li>On Mac, the application is called Terminal</li>
+</ul>
+<ol start="3">
+<li>
+<p>Now make a folder to hold all of your future projects in, type: <code>mkdir workspace</code></p>
+</li>
+<li>
+<p>Then change into the workspace directory, type <code>cd workspace</code>.  This is where we will be creating our Todo app project</p>
+</li>
+</ol>
+<h3 id="initialising-the-project">Initialising the project</h3>
+<p>To initialise our React Todo project we will first need to install YARN, yarn is a package manager for JavaScript which allows you to install different libraries that you might need when building JavaScript applications.</p>
+<ol>
+<li>
+<p>Install yarn:</p>
+<ul>
+<li>If you are on Windows then you can download the yarn installer from the following: https://yarnpkg.com/en/docs/install, you will also need to install NodeJS https://nodejs.org/en/download/</li>
+<li>On a mac, it is best to first install <a href="https://brew.sh/">homebrew</a> and then run <code>brew install yarn</code> from the Terminal</li>
+</ul>
+</li>
+<li>
+<p>Initialise our new project, type: <code>yarn create react-app my-todo</code> this will create a new folder called <code>my-todo</code> in our workspace directory and create all the necessary files and folders we need to start working with our React application.</p>
+</li>
+<li>
+<p>Change into the newly created directory <code>cd my-todo</code></p>
+</li>
+<li>
+<p>Now start your application to check that everything is working as intended <code>yarn start</code>. This should boot the application and open a new tab with the following screen:</p>
+</li>
+</ol>
+<p><img src="../screenshot.jpg" alt="ReactJS Working" title="ReactJS Working"></p>
+<p>If you can see this screen then you are good to go.</p>
+<h3 id="setting-up-our-github-account-and-repository">Setting up our github account and repository</h3>
+<p>Now that we have something to begin building our Todo application with, we first want to make sure that we are tracking any changes we make to our code so that we can undo any mistakes we might make at a later date.  To do this, we will use git, our version control app of choice and team it up with GitHub, an online service which allows us to store our code securely in the cloud.</p>
+<ol>
+<li>
+<p>Open another terminal window</p>
+</li>
+<li>
+<p>Navigate into your project directory again, this should be possible with <code>cd workspace/my-todo</code></p>
+</li>
+<li>
+<p>Now that we are in our app folder, we can create a new git repository, <code>git init</code>.</p>
+<ul>
+<li><code>create-react-app</code> may have done this automatically for us already, but it's good to just go through the motions anyway as not all packages will do this for us automatically.</li>
+</ul>
+</li>
+<li>
+<p>With our repository initialised, we now want to create an account on GitHub and link our todo project with our github project.</p>
+<ul>
+<li><a href="https://github.com/join?source=header-home">Create an account on github</a></li>
+<li><a href="https://github.com/new">Start a new project on github</a> name the repository <code>my-todo</code></li>
+<li>You should now be presented with a screen to either create a new repository locally or add it to an existing repository, follow the instructions for <code>…or push an existing repository from the command line</code></li>
+</ul>
+</li>
+<li>
+<p>Now that we have linked our local repository with our github project we can save what we have so far and push it up to github</p>
+<ul>
+<li><code>git add -A</code> - This will add all of the files we have created so far so that we can create our first git commit.</li>
+<li><code>git commit -m &quot;Initial commit&quot;</code> - this will create a commit with the message &quot;Initial commit&quot; in our local repository. This commit is now stored so that if we make any changes later which we want to undo, we can rollback to this point in our project at any time.</li>
+<li><code>git push origin master</code> - will now push these local changes up to our github account so that they are stored in the cloud, this way if anything happens to our computer and we end up losing all of our work, we can always get our code back from GitHub instead. (here <code>origin</code> refers to GitHub and <code>master</code> is the name of the branch we want to push to)</li>
+<li>Once you have done that, we can now go back to our GitHub repository page in the browser and refresh the page. Your files and folders show now all be visible</li>
+</ul>
+</li>
+</ol>
+<h2 id="installing-a-text-editor">Installing a text editor</h2>
+<p>We are now very close to being able to start writing the code to our new application, but first we need to install an editor to write our code with.</p>
+<p>For ease of use and simplicity I would recommend using Visual Studio Code, it's free, open source and is becoming more and more popular with web developers across the world.</p>
+<ol>
+<li>
+<p>Install <a href="https://code.visualstudio.com/">Visual Studio Code</a></p>
+</li>
+<li>
+<p>Open Visual Studio Code and then go to File &gt; Open Folder &gt; select the 'my-todo' folder and open it</p>
+</li>
+</ol>
+<h3 id="branching-off-of-master">Branching off of master</h3>
+<p>Now that we are in a position to start coding, we should first start a new git branch.  A branch in git is the equivalent to copying the work we currently have to a new location so that we can start to make changes to it without the worry of breaking or deleting any important code we currently have.  Once we have finished making any changes we want, and are happy with the results, we can then merge those changes back into our original work.</p>
+<p>If we now go back to our terminal window where we ran the command <code>git push origin master</code> we can create a new branch for us to start making changes.</p>
+<ol>
+<li>
+<p>First check we are still on the master branch <code>git status</code>. It should return:</p>
+<pre class="hljs"><code><div>On branch master
+nothing to commit, working tree clean
+</div></code></pre>
+<p>This means that we haven't made any changes to our project after we pushed up our previous changes.</p>
+</li>
+<li>
+<p>Now that we have confirmed that we haven't made any changes we can go ahead and create a new branch based off of <code>master</code></p>
+<pre class="hljs"><code><div>git checkout -b feature/basic-todo-functionality
+</div></code></pre>
+</li>
+</ol>
+<p>This will create a new branch called <code>feature/basic-todo-functionality</code> and change our working branch to the new one.</p>
+<h2 id="how-react-works">How react works</h2>
+<h3 id="components">Components</h3>
+<h3 id="classes">Classes</h3>
+<h3 id="render">Render</h3>
+<h3 id="constructor">Constructor</h3>
+<h3 id="callbacks">Callbacks</h3>
+<h3 id="imports">Imports</h3>
+<h3 id="state">State</h3>
+<h3 id="this">this</h3>
+<h2 id="writing-your-first-bit-of-code">Writing your first bit of code</h2>
+<p>Now that we have everything in place we need to start building our app, let's start to get down to some serious coding!  All the code we need to worry about at this point is located under the <code>src</code> directory.</p>
+<h3 id="first-well-start-off-by-renaming-the-app-files-to-todo-to-give-us-a-bit-more-context">First we'll start off by renaming the <code>App</code> files to <code>Todo</code> to give us a bit more context:</h3>
+<ol>
+<li>
+<p>Rename the file <code>App.js</code> to <code>Todo.js</code></p>
+</li>
+<li>
+<p>Inside <code>index.js</code> change the line <code>import App from './App';</code> to <code>import Todo from './Todo';</code> so that it imports our renamed file and then update <code>ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));</code> to <code>ReactDOM.render(&lt;Todo /&gt;, document.getElementById('root'));</code> so that React knows which component it should render.</p>
+</li>
+<li>
+<p>Save the file <code>index.js</code></p>
+</li>
+<li>
+<p>Remove the files <code>App.css</code> and <code>logo.svg</code> from the <code>src</code> directory as we will be creating our own CSS from scratch later.</p>
+</li>
+<li>
+<p>Inside <code>Todo.js</code> remove the following lines:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> logo <span class="hljs-keyword">from</span> <span class="hljs-string">'./logo.svg'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./App.css'</span>;
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">{logo}</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"App-logo"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"logo"</span> /&gt;</span>
+</span></div></code></pre>
+<p>Otherwise our app will fail and raise an error as the files no longer exist.</p>
+</li>
+<li>
+<p>Inside <code>Todo.js</code> rename any references from <code>App</code> to <code>Todo</code>, there should be 2</p>
+</li>
+<li>
+<p>Save the file</p>
+</li>
+<li>
+<p>Rename <code>App.test.js</code> to <code>Todo.test.js</code></p>
+</li>
+<li>
+<p>Inside <code>Todo.test.js</code> rename any occurrences of <code>App</code> to <code>Todo</code> (there should be 3) and save the file.</p>
+</li>
+<li>
+<p>Finally in your terminal run <code>yarn test</code> to check that our updated test is still passing.  You should see something like the following:</p>
+<pre class="hljs"><code><div>PASS  src/Todo.test.js
+  √ renders without crashing (32ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        2.855s
+Ran all test suites.
+
+Watch Usage: Press w to show more.
+</div></code></pre>
+</li>
+<li>
+<p>Press <code>q</code> to quit out of the test suite</p>
+<p>You should also now see in your browser, where we have removed the logo and styling of the default app:</p>
+<pre class="hljs"><code><div>Edit src/App.js and save to reload.
+
+Learn React
+</div></code></pre>
+<p>We will replace this content in the next section.</p>
+</li>
+<li>
+<p>Now would be a good time to ensure we have saved any files we have edited and commit our changes to git.</p>
+<ul>
+<li>Check you have saved all the files we have edited</li>
+<li>In your terminal, run the command <code>git status</code>. This should print out a list of changes.  This can be useful for checking what files you are about to add and commit to git.</li>
+<li>Run <code>git add -A</code> to add all files, including those deleted, so that they are ready to be committed.</li>
+<li>Run <code>git commit -m &quot;Renamed files&quot;</code> this will create a new commit with the message <code>renamed files</code></li>
+</ul>
+</li>
+<li>
+<p>Now we can push these changes to GitHub for storage in case anything happens to our local machine and end up losing all the work we have done.</p>
+<ul>
+<li><code>git push origin feature/basic-todo-functionality</code> this will push any commits we have made locally to origin (in this case our github account) to the branch <code>feature/basic-todo-functionality</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="adding-a-form-to-create-new-todo-items">Adding a form to create new todo items</h3>
+<p>Let's start by adding a form to our app so that you can begin to add items to your todo list.</p>
+<ol>
+<li>Replace the contents of the <code>render()</code> function in the <code>Todo.js</code> class with the following:<pre class="hljs"><code><div><span class="hljs-keyword">return</span> (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">'text'</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">'What would you like to do?'</span> <span class="hljs-attr">name</span>=<span class="hljs-string">'todoItem'</span> <span class="hljs-attr">autoComplete</span>=<span class="hljs-string">'off'</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">'submit'</span>&gt;</span>Add<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+);
+</span></div></code></pre>
+</li>
+</ol>
+<ul>
+<li>save the file and go back to your browser, you should now see an input field with the text <code>What would you like to do?</code> and a button with the text <code>Add</code></li>
+</ul>
+<ol start="2">
+<li>
+<p>You'll find that when you type something in and click <code>Add</code> nothing actually happens.  That's because we haven't told React to do anything with our data yet, so we'll do that next.</p>
+</li>
+<li>
+<p>To save items that we add to our todo list we will use React's built in state to accomplish this:</p>
+</li>
+</ol>
+<ul>
+<li>Create a <code>constructor()</code> function above our <code>render()</code> function (<code>...</code> will donate other code not shown for the purpose of the example)<pre class="hljs"><code><div>...
+class App extends Component {
+  <span class="hljs-keyword">constructor</span> () {
+  }
+
+  render () {
+    ...
+  }
+}
+...
+</div></code></pre>
+</li>
+</ul>
+<ol start="4">
+<li>
+<p>Then inside our constructor function we need to call <code>super()</code> so that it calls any original code that React has in place for a React Component to work correctly (this code is not visible to us, but exists within the internals of React itself)</p>
+</li>
+<li>
+<p>On a new line below our call to <code>super()</code> we will set the default state for the todo list and the default input value for our todo item:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">this</span>.state = {
+  <span class="hljs-attr">todos</span>: [],
+  <span class="hljs-attr">value</span>: <span class="hljs-string">''</span>
+}
+</div></code></pre>
+</li>
+</ol>
+<p>Here we are setting the state to an object which has a key called 'todos' (which we will refer to later in our app) and then assign it an empty array <code>[]</code>. We assign it an empty array, so that it is clear to us or any other developer which may work on the project, that we intend to propagate 'todos' with a list of items.</p>
+<p>We have also added the 'value' key to our state, as this will log the todo item value from our input field.</p>
+<ol start="6">
+<li>
+<p>Now we need to create a function that will get called when we click the button 'Add', to update this state with a new item and a function that will get called when we type text into the input field.</p>
+<ul>
+<li>We'll call the first function <code>addItemToList()</code> so that it is clear as to what it actually does.</li>
+<li>This will then add the item we type in the input field into the 'todos' key of our React state.</li>
+<li>The second function will be <code>handleChange()</code> which will log what is typed into the input field.</li>
+<li>Then we will need to update our <code>render()</code> function to display these items on the page.</li>
+</ul>
+</li>
+<li>
+<p>Create the function <code>addItemToList()</code> and <code>handleChange()</code> below your <code>constructor()</code> function:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">constructor</span> () {
+...
+}
+
+addItemToTodo () {
+
+}
+
+handleChange () {
+
+}
+
+render () {
+  ...
+}
+</div></code></pre>
+</li>
+<li>
+<p>Next we'll have them both accept the argument <code>event</code></p>
+<pre class="hljs"><code><div>addItemToTodo (event) {
+
+}
+
+handleChange (event) {
+
+}
+</div></code></pre>
+</li>
+<li>
+<p>We also need to tell React not to treat the form in the traditional sense, where it makes a request and then reloads the page; we want to stay on the current page and just update the state:</p>
+<pre class="hljs"><code><div>addItemToTodo (event) {
+  event.preventDefault() <span class="hljs-comment">// Do not submit the form and cause the page to refresh</span>
+
+}
+</div></code></pre>
+<p>We'll also use the event to pull out what the user has typed and save it to the state so that we can use it to add to our todo list later</p>
+<pre class="hljs"><code><div>handleChange (event) {
+  <span class="hljs-keyword">this</span>.setState({
+    <span class="hljs-attr">value</span>: event.target.value
+  })
+}
+</div></code></pre>
+</li>
+<li>
+<p>Next we'll save the value of the text input into a variable for us to use later by adding it to the 'todos' state.</p>
+<pre class="hljs"><code><div>addItemToTodo (event) {
+  event.preventDefault() <span class="hljs-comment">// Do not submit the form and cause the page to refresh</span>
+  <span class="hljs-keyword">const</span> item = <span class="hljs-keyword">this</span>.state.value
+}
+</div></code></pre>
+<p><code>this.state.value</code> here refers to the content in the input field that the user types in as a todo item.</p>
+</li>
+<li>
+<p>Clear the input field</p>
+<p>As we are preventing the page from refreshing, we will want to reset the value of the input field that the user initially entered.  If they want to add another todo item, they won't need to first delete the contents within the input field.</p>
+<pre class="hljs"><code><div>addItemToTodo (event) {
+  event.preventDefault() <span class="hljs-comment">// Do not submit the form and cause the page to refresh</span>
+  <span class="hljs-keyword">const</span> item = <span class="hljs-keyword">this</span>.state.value
+
+  <span class="hljs-keyword">this</span>.setState({
+    <span class="hljs-attr">value</span>: <span class="hljs-string">''</span>
+  })
+}
+</div></code></pre>
+<p>Here we are setting the value of the input field back to an empty string for the users convenience.</p>
+</li>
+<li>
+<p>Insert the input value into the 'todos' state:</p>
+<pre class="hljs"><code><div>addItemToTodo (event) {
+  event.preventDefault() <span class="hljs-comment">// Do not submit the form and cause the page to refresh</span>
+  <span class="hljs-keyword">const</span> item = <span class="hljs-keyword">this</span>.state.value
+
+  <span class="hljs-keyword">this</span>.setState({
+    <span class="hljs-attr">todos</span>: [item],
+    <span class="hljs-attr">value</span>: <span class="hljs-string">''</span>
+  })
+}
+</div></code></pre>
+<p>Here we are updating the 'todos' state to be an array with one value of <code>item</code>, the content that was entered into the input field.</p>
+</li>
+<li>
+<p>Allow our new <code>addItemToTodo()</code> and <code>handleChange()</code> functions have access to <code>this</code></p>
+<p>In our <code>addItemToTodo()</code> and <code>handleChange()</code> functions we are accessing React's state through the use of <code>this</code> but our functions will be referring to a different version of <code>this</code>, therefore we will need to give it access.  To do this, we will need to add another line to our <code>constructor()</code> function:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">constructor</span> () {
+  <span class="hljs-keyword">super</span>()
+
+  <span class="hljs-keyword">this</span>.state = {
+    <span class="hljs-attr">todos</span>: [],
+    <span class="hljs-attr">value</span>: <span class="hljs-string">''</span>
+  }
+
+  <span class="hljs-keyword">this</span>.addItemToTodo = <span class="hljs-keyword">this</span>.addItemToTodo.bind(<span class="hljs-keyword">this</span>)
+  <span class="hljs-keyword">this</span>.handleChange = <span class="hljs-keyword">this</span>.handleChange.bind(<span class="hljs-keyword">this</span>)
+}
+</div></code></pre>
+</li>
+<li>
+<p>Finally, the last piece of the puzzle is to tell our form to use our new <code>addItemToTodo()</code> function when we submit the form (when clicking on the 'Add' button):</p>
+<pre class="hljs"><code><div>&lt;form onSubmit={<span class="hljs-keyword">this</span>.addItemToTodo}&gt;
+</div></code></pre>
+<p>And for our input field to call <code>handleChange()</code> whenever something is typed into the input field:</p>
+<pre class="hljs"><code><div>&lt;input type=<span class="hljs-string">'text'</span> placeholder=<span class="hljs-string">'What would you like to do?'</span> value={<span class="hljs-keyword">this</span>.state.value} name=<span class="hljs-string">'todoItem'</span> autoComplete=<span class="hljs-string">'off'</span> onChange={<span class="hljs-keyword">this</span>.handleChange} /&gt;
+</div></code></pre>
+</li>
+<li>
+<p>Testing our new functionality</p>
+<p>Now if we go back to the browser and type something into the input field and click 'Add' it should add our new item to the 'todos' list state.  Go ahead and give it a try.</p>
+</li>
+<li>
+<p>Hmmm</p>
+<p>When we click 'Add' it doesn't seem like it does anything still, does it?  This is because we haven't told React what to do with our new 'todos' state.  First, let's check the state is being updated.</p>
+<ul>
+<li>Add the line <code>console.log(this.state.todos)</code> so that it is on the next line within our <code>render()</code> function:<pre class="hljs"><code><div>render () {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.state.todos) <span class="hljs-comment">// Print out the `todos` state into the browsers console</span>
+  <span class="hljs-keyword">return</span> (
+    ...
+  )
+}
+</div></code></pre>
+</li>
+<li>Go back to the browser and right click on the page and choose <code>inspect</code>, then click on the tab called <code>console</code>.  This is the JavaScript console of the browser, which will show you any data we put in <code>console.log()</code> and also any potential errors or bad practices that may be occurring within your app which React will inform us of automatically.</li>
+<li>Now try typing something in your input field again and clicking 'Add'.</li>
+<li>You should now see something like <code>[&quot;hello&quot;]</code> in your browsers console.  This confirms that our <code>addItemToTodo()</code> function is working as intended; our 'todos' state is now an array with one value, the value you just typed into the input field.</li>
+</ul>
+</li>
+<li>
+<p>Displaying your todo list in your todo app.</p>
+<p>Now that we've confirmed that we are adding items to our todo list through the console, let's update our <code>render()</code> function to display them on the page:</p>
+<ul>
+<li>We'll create a new function called <code>buildTodoList()</code> to generate our list of todos to display on the page.</li>
+<li>Add a call to this function in our <code>render()</code> function.</li>
+<li>Remove the <code>console.log(this.state.todos)</code> line.</li>
+<li>Add a fragment (&lt;&gt;&lt;/&gt;) around our HTML in the <code>render()</code> function.</li>
+<li>Use the text from our todo item as the key (this should be safe to do as there shouldn't be an instance where we have two todo items which are exactly the same.  If this is a concern for you, then you could add validation to ensure that all items are unique)</li>
+</ul>
+<pre class="hljs"><code><div>...
+
+buildTodoList () {
+  <span class="hljs-keyword">const</span> { todos } = <span class="hljs-keyword">this</span>.state
+
+  <span class="hljs-keyword">return</span> todos.map(<span class="hljs-function"><span class="hljs-params">todo</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{todo}</span>&gt;</span>{todo}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
+  })
+}
+
+render () {
+  <span class="hljs-keyword">return</span> (
+    &lt;&gt;
+      &lt;form onSubmit={this.addItemToTodo}&gt;
+        &lt;div&gt;
+          &lt;input type='text' placeholder='What would you like to do?' value={this.state.value} name='todoItem' autoComplete='off' onChange={this.handleChange} /&gt;
+          &lt;button type='submit'&gt;Add&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
+      &lt;ul&gt;
+        {this.buildTodoList()}
+      &lt;/ul&gt;
+    &lt;/&gt;
+  );
+}
+
+...
+</div></code></pre>
+<p>Here we are pulling out the 'todos' value from our state and assigning to a <code>todos</code> variable.  We are then creating a new array using the <code>map()</code> function with the values of our list items.</p>
+<p>Next we insert theses values as returned from the <code>buildTodoList()</code> function into an unordered list.</p>
+</li>
+<li>
+<p>Whenever we change or implement a piece of functionality we should test it first by hand, this is called QA (quality assurance); we need to check that things work as we intended them to.</p>
+<ul>
+<li>Go ahead and add some items to your todo list to check that it's working as intended.</li>
+</ul>
+</li>
+<li>
+<p>You might have noticed that it is not quite working as intended, you can successfully add items to your todo list, but every time you add a new one, it replaces your old one.  The maximum number of items we can ever have is one, not exactly ideal.</p>
+</li>
+</ol>
+<ul>
+<li>Take this time to have a look through your code to see if you can spot where this might be happening.  It can often help to place <code>console.log()</code> (and passing it an argument) throughout your code to help find where the route cause is, or you might want to use the <a href="https://code.visualstudio.com/docs/editor/debugging">debugger within Visual Studio Code</a>.  If you do use <code>console.log()</code>, remember to take them out later.  If you manage to find the cause, don't worry too much about trying to fix it yourself, we will do it in the next step.</li>
+</ul>
+<ol start="20">
+<li>
+<p>Fixing our list so that it doesn't replace old items.</p>
+<p>As you may have identified, the problem lies with the <code>addItemToTodo()</code> function.  It simply replaces our 'todos' state with the most recent item, thus throwing away any previous items.</p>
+<p>Let's go ahead and update this function so that it works as intended:</p>
+<ul>
+<li>Pull out our current 'todos' state into a variable</li>
+<li>Add new todo item to our previous list of todos</li>
+<li>Update the state with our new todo list</li>
+</ul>
+<pre class="hljs"><code><div>addItemTodoList (event) {
+  event.preventDefault()
+  <span class="hljs-keyword">const</span> item = <span class="hljs-keyword">this</span>.state.value
+  <span class="hljs-keyword">const</span> { todos } = <span class="hljs-keyword">this</span>.state
+
+  todos.push(item)
+
+  <span class="hljs-keyword">this</span>.setState({
+    <span class="hljs-attr">todos</span>: todos,
+    <span class="hljs-attr">value</span>: <span class="hljs-string">''</span>
+  })
+}
+</div></code></pre>
+<p>Save the <code>Todo.js</code> file and then check that everything is now working as intended in the browser</p>
+<p>In the next part of the course, we will focus on creating a <code>todoItem</code> component, which also allows us to mark an item as completed.</p>
+<p>This would also be the perfect time for us to commit our changes to git and push to github.  If you need help remembering how to do this, refer back to where we did this earlier.  Remember to use a descriptive message for the commit, rather than reusing the previous one.</p>
+</li>
+</ol>
+<h3 id="creating-our-todoitem-component">Creating our todoItem component</h3>
+<p>Now that we are in a position to add more functionality to our todo items, it would be a good time to create another component so that it can manage it's own state.</p>
+<ul>
+<li>Create a new component called <code>todoItem</code></li>
+<li>Import the component into our <code>Todo</code> component</li>
+<li>Add a checkbox so that we can mark a todo item as done</li>
+<li>Pass the todo text from <code>Todo</code> into the <code>TodoItem</code> props</li>
+</ul>
+<ol>
+<li>
+<p>Create a new file in the <code>src/</code> directory called <code>TodoItem.js</code></p>
+</li>
+<li>
+<p>Create a new class called <code>TodoItem</code> which extends <code>Component</code> and add a <code>render()</code> funtion.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoItem</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+  render () {
+    
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> TodoItem
+
+</div></code></pre>
+</li>
+<li>
+<p>Update the <code>render()</code> function to return a checkbox and the todo item text.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> { item } = <span class="hljs-keyword">this</span>.props
+
+<span class="hljs-keyword">return</span> &lt;&gt;
+  &lt;input type='checkbox' name='todoItem' /&gt; {item}
+&lt;/&gt;
+</div></code></pre>
+<p>You'll notice here that we are also pulling out a value called <code>item</code> from the props.  We'll update <code>Todo</code> now to pass this value to the props of <code>TodoItem</code></p>
+</li>
+<li>
+<p>Update the <code>buildTodoList()</code> function in <code>Todo</code> to use the new <code>TodoItem</code> component and pass the todo text value to <code>TodoItem</code> as a prop and import <code>TodoItem</code></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> TodoItem <span class="hljs-keyword">from</span> <span class="hljs-string">'./TodoItem'</span>
+
+...
+
+buildTodoList () {
+  <span class="hljs-keyword">const</span> { todos } = <span class="hljs-keyword">this</span>.state
+
+  <span class="hljs-keyword">return</span> todos.map(<span class="hljs-function"><span class="hljs-params">todo</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{todo}</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">TodoItem</span> <span class="hljs-attr">item</span>=<span class="hljs-string">{todo}</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  })
+}
+</span></div></code></pre>
+<p>Now if you go back to your browser and add a new todo item you should see a checkbox next to it.  At this point if you click on the checkbox it doesn't mark the item as completed.  We will first need to track this in the state of our <code>TodoItem</code> component and then add styling through the use of CSS to make it look completed visually.</p>
+</li>
+<li>
+<p>Update <code>TodoItem</code> to track the state of completed items.</p>
+<ul>
+<li>Add a <code>constructor()</code> function to set the default state</li>
+<li>Add a <code>markAsDone()</code> function to update the state</li>
+<li>Update the render function to pass through the done state and update the styling</li>
+</ul>
+<p>Let's begin by editing <code>TodoItem</code> and adding our <code>constructor()</code> function</p>
+<pre class="hljs"><code><div>...
+constructor () {
+  <span class="hljs-keyword">super</span>()
+
+  <span class="hljs-comment">// Set our default state for the todo item as not done</span>
+  <span class="hljs-keyword">this</span>.state = {
+    <span class="hljs-attr">done</span>: {}
+  }
+
+  <span class="hljs-comment">// Delegate this to markAsDone</span>
+  <span class="hljs-keyword">this</span>.markAsDone = <span class="hljs-keyword">this</span>.markAsDone.bind(<span class="hljs-keyword">this</span>)
+}
+...
+</div></code></pre>
+<p>Now we can add our <code>markAsDone()</code> function to update the item as done when clicked on.</p>
+<pre class="hljs"><code><div>...
+markAsDone (event) {
+  <span class="hljs-comment">// Use the checkbox value from the form and change the text to strikethrough if the checkbox is checked</span>
+  <span class="hljs-keyword">if</span> (event.target.checked) {
+    <span class="hljs-keyword">this</span>.setState({<span class="hljs-attr">done</span>: {<span class="hljs-attr">textDecoration</span>: <span class="hljs-string">'line-through'</span>}})
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">this</span>.setState({<span class="hljs-attr">done</span>: {}})
+  }
+}
+...
+</div></code></pre>
+<p>Finally, we can update our <code>render()</code> function to pull in the <code>done</code> state and use the <code>onClick()</code> callback of the checkbox to call our <code>markAsDone()</code> function.</p>
+<pre class="hljs"><code><div>...
+render () {
+  <span class="hljs-comment">// Assign our done state to a variable</span>
+  <span class="hljs-keyword">const</span> { done } = <span class="hljs-keyword">this</span>.state
+  <span class="hljs-keyword">const</span> { item } = <span class="hljs-keyword">this</span>.props
+
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{done}</span>&gt;</span> 
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{markAsDone}</span> <span class="hljs-attr">type</span>=<span class="hljs-string">'checkbox'</span> <span class="hljs-attr">name</span>=<span class="hljs-string">'todoItem'</span> /&gt;</span> {item}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+}
+...
+</span></div></code></pre>
+<p>Now if we go back to the browser, add a new item and click the checkbox it should put a strikethrough across the text. Unchecking it should then do the opposite.</p>
+</li>
+<li>
+<p>Commit your changes to git and push to github</p>
+</li>
+</ol>
+<h3 id="deleting-todo-items">Deleting todo items</h3>
+<p>Next we'll add the ability to delete todo items.</p>
+<ul>
+<li>Add <code>deleteItem()</code> function to <code>Todo</code></li>
+<li>Pass <code>deleteItem()</code> function to <code>TodoItem</code> component as a prop</li>
+<li>Add delete link to <code>TodoItem</code></li>
+</ul>
+<ol>
+<li>
+<p>Add the <code>deleteItem()</code> function to <code>Todo</code></p>
+<pre class="hljs"><code><div>...
+
+deleteItem (item) {
+  <span class="hljs-keyword">const</span> { todos } = <span class="hljs-keyword">this</span>.state
+
+  <span class="hljs-comment">// Remove the todo item from the todos array</span>
+  todos.splice(item, <span class="hljs-number">1</span>)
+
+  <span class="hljs-comment">// Update the todos state with our reduced list of todo items</span>
+  <span class="hljs-keyword">this</span>.setState({
+    <span class="hljs-attr">todos</span>: todos,
+    <span class="hljs-attr">value</span>: <span class="hljs-string">''</span>
+  })
+}
+
+...
+</div></code></pre>
+</li>
+<li>
+<p>Update <code>buildTodoList()</code> function to pass the <code>deleteItem()</code> function to <code>TodoItem</code> component</p>
+<pre class="hljs"><code><div>...
+buildTodoList () {
+  <span class="hljs-keyword">const</span> { todos } = <span class="hljs-keyword">this</span>.state
+  
+  <span class="hljs-keyword">return</span> todos.map(<span class="hljs-function">(<span class="hljs-params">todo, index</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{todo}</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">TodoItem</span> <span class="hljs-attr">item</span>=<span class="hljs-string">{todo}</span> <span class="hljs-attr">deleteItem</span>=<span class="hljs-string">{()</span> =&gt;</span> this.deleteItem(index)} /&gt; 
+    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  })
+}
+...
+</span></div></code></pre>
+<p>Here we wrap the function <code>deleteItem()</code> in a function so it is only called when we click on <code>delete</code>.  If we only passed <code>this.deleteItem(index)</code> without first wrapping it in a function, then it would be called immediately.</p>
+</li>
+<li>
+<p>Bind <code>this</code> to <code>deleteItem()</code></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">constructor</span> () {
+  <span class="hljs-keyword">super</span>()
+
+  <span class="hljs-keyword">this</span>.state = {
+    <span class="hljs-attr">todos</span>: [],
+    <span class="hljs-attr">value</span>: <span class="hljs-string">''</span>
+  }
+  <span class="hljs-keyword">this</span>.addItemToTodo = <span class="hljs-keyword">this</span>.addItemToTodo.bind(<span class="hljs-keyword">this</span>)
+  <span class="hljs-keyword">this</span>.handleChange = <span class="hljs-keyword">this</span>.handleChange.bind(<span class="hljs-keyword">this</span>)
+  <span class="hljs-keyword">this</span>.deleteItem = <span class="hljs-keyword">this</span>.deleteItem.bind(<span class="hljs-keyword">this</span>)
+}
+</div></code></pre>
+</li>
+<li>
+<p>Update <code>TodoItem</code> to have a delete link and to call the <code>deleteItem()</code> function on click</p>
+<pre class="hljs"><code><div>render () {
+  <span class="hljs-keyword">const</span> { done } = <span class="hljs-keyword">this</span>.state
+  <span class="hljs-keyword">const</span> { item, deleteItem } = <span class="hljs-keyword">this</span>.props
+
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{done}</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">'checkbox'</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.markAsDone}</span> <span class="hljs-attr">name</span>=<span class="hljs-string">'todoItem'</span> /&gt;</span>
+    {item}
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{deleteItem}</span> <span class="hljs-attr">data-behavior</span>=<span class="hljs-string">'delete'</span>&gt;</span>delete<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+}
+</span></div></code></pre>
+<p>Now when you add a todo item and click <code>delete</code> in the browser, it should remove that item from the list!</p>
+</li>
+<li>
+<p>Commit your changes to git and push to github</p>
+</li>
+</ol>
+<h2 id="making-our-todo-list-look-a-bit-prettier">Making our todo list look a bit prettier</h2>
+<p>Now that we have the basic functionality of our todo list in place, we can start to concentrate on making it look a bit prettier.</p>
+<h3 id="defining-the-css-directory-structure">Defining the CSS directory structure</h3>
+<p>For our example app, we are going to use two CSS concepts called Block Element Modifier (<a href="http://getbem.com/">BEM</a>) and Inverted Triangle CSS (<a href="https://itcss.io/">ITCSS</a>).  These two methodologies will help to keep our CSS clean and more maintainable, especially if our project were to get particularly large.</p>
+<p>So let's move on to defining our directory structure:</p>
+<ol>
+<li>
+<p>Create a <code>scss</code> folder in the <code>src</code> directory.</p>
+</li>
+<li>
+<p>Create a <code>components</code> folder in our newly created <code>scss</code> folder.</p>
+<p>This is where the majority of our styling will live.</p>
+</li>
+</ol>
+<h3 id="resetting-styles">Resetting styles</h3>
+<p>Every browser has it's own default styling built in, this is so that it can style basic elements in the event the web site does not have any CSS.  However, every browser does this differently, therefore we need to reset the browsers default styling before we start to overlap our own defined styles.  If we don't do this, then it increases the likelyhood that our site will look different on different browsers, and this is something that we don't want to be dealing with or at least minimising where possible.</p>
+<ol>
+<li>
+<p>Create a file called <code>reset.scss</code> in the root of our <code>scss</code> folder.</p>
+</li>
+<li>
+<p>Head to <a href="https://meyerweb.com/eric/tools/css/reset/">https://meyerweb.com/eric/tools/css/reset/</a> and copy the CSS on the page into your <code>reset.scss</code> file.</p>
+</li>
+</ol>
+<h3 id="adding-some-base-styles">Adding some base styles</h3>
+<p>Now that we have our reset in place, let's define some base styling, this will define how we want certain elements to look across the whole site.</p>
+<ol>
+<li>
+<p>Create the file <code>base.scss</code> in the root of our <code>scss</code> folder.</p>
+<p>Copy and paste the following styles:</p>
+<pre class="hljs"><code><div><span class="hljs-selector-tag">body</span> {
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">16px</span>;
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">font-family</span>: -apple-system, BlinkMacSystemFont, <span class="hljs-string">"Segoe UI"</span>, <span class="hljs-string">"Roboto"</span>, <span class="hljs-string">"Oxygen"</span>,
+    <span class="hljs-string">"Ubuntu"</span>, <span class="hljs-string">"Cantarell"</span>, <span class="hljs-string">"Fira Sans"</span>, <span class="hljs-string">"Droid Sans"</span>, <span class="hljs-string">"Helvetica Neue"</span>,
+    sans-serif;
+  <span class="hljs-attribute">-webkit-font-smoothing</span>: antialiased;
+  <span class="hljs-attribute">-moz-osx-font-smoothing</span>: grayscale;
+}
+
+<span class="hljs-selector-tag">input</span> {
+  <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">0.5em</span>;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#d1d1d1</span>;
+}
+
+<span class="hljs-selector-tag">input</span><span class="hljs-selector-attr">[type=checkbox]</span> {
+  <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-selector-tag">h1</span> {
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2em</span>;
+  <span class="hljs-attribute">padding-top</span>: <span class="hljs-number">1em</span>;
+  <span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">1em</span>;
+}
+
+<span class="hljs-selector-tag">p</span> {
+  <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">1em</span>;
+}
+
+<span class="hljs-selector-tag">ul</span>, <span class="hljs-selector-tag">ol</span> {
+  <span class="hljs-attribute">padding-top</span>: <span class="hljs-number">1em</span>;
+}
+
+<span class="hljs-selector-tag">li</span> {
+  <span class="hljs-attribute">padding-top</span>: <span class="hljs-number">1em</span>;
+}
+</div></code></pre>
+</li>
+</ol>
+<h3 id="include-the-reset-and-base-styling-into-our-application">Include the reset and base styling into our application</h3>
+<p>Now that we have defined the basic styling we need, we now have to import it into our app so that it can be picked up by the browser.</p>
+<ol>
+<li>
+<p>Create the file <code>index.scss</code> in the <code>scss</code> folder.</p>
+<p>We will use this file to import our <code>reset</code> and <code>base</code> styles.</p>
+<ul>
+<li>In <code>index.scss</code>:</li>
+</ul>
+<pre class="hljs"><code><div>@<span class="hljs-keyword">import</span> <span class="hljs-string">"./reset"</span>;
+@<span class="hljs-keyword">import</span> <span class="hljs-string">"./base"</span>;
+</div></code></pre>
+</li>
+<li>
+<p>Update <code>index.js</code> to pull in our new <code>index.scss</code> stylesheet.</p>
+<ul>
+<li>Update the line:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'./index.css'</span>;
+</div></code></pre>
+<p>to:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'./scss/index.scss'</span>;
+</div></code></pre>
+</li>
+<li>
+<p>Delete the file <code>index.css</code> as it's no longer needed.</p>
+<p>Now if you go back to the browser you should be presented with an error message.  It's basically stating that we are now using <code>.scss</code> files rather than regular CSS ones and it doesn't know how to interpret them. We'll need to install <code>node-sass</code> for that to work.</p>
+</li>
+<li>
+<p>Open a new teminal window and <code>cd</code> to your <code>my-todo</code> folder.</p>
+</li>
+<li>
+<p>Type in the following and press enter: <code>yarn add node-sass</code>.</p>
+</li>
+<li>
+<p>Once that command has finished, go back to the terminal where you started your application.  Then press <code>ctrl+c</code> to cancel the running application (your todo react app). Then run <code>yarn start</code> again in that terminal.  This should then restart your application and open another tab in your browser.  At this point, your app should be running again without any errors and the styling of your app should start to look a little different.</p>
+</li>
+</ol>
+<h3 id="adding-styling-to-our-form">Adding styling to our form</h3>
+<ol>
+<li>
+<p>Create a file called <code>c-form.scss</code> in the <code>scss/components</code> folder.</p>
+<p>Enter the contents:</p>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.c-form</span> {
+  &amp;__input-group {
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+    <span class="hljs-attribute">box-sizing</span>: border-box;
+    <span class="hljs-attribute">display</span>: flex;
+    
+    input {
+      <span class="hljs-attribute">flex-grow</span>: <span class="hljs-number">1</span>;
+    }
+  }
+}
+</div></code></pre>
+<p>Now we need update our HTML to use these classes.</p>
+<p>In the file <code>Todo.js</code> update the form to the following:</p>
+<pre class="hljs"><code><div>&lt;form onSubmit={<span class="hljs-keyword">this</span>.addItemToTodo} className=<span class="hljs-string">'c-form'</span>&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">'c-form__input-group'</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">'text'</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">'What would you like to do?'</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{this.state.value}</span> <span class="hljs-attr">name</span>=<span class="hljs-string">'todoItem'</span> <span class="hljs-attr">autoComplete</span>=<span class="hljs-string">'off'</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.handleChange}</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">'submit'</span>&gt;</span>Add<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
+</div></code></pre>
+</li>
+<li>
+<p>Create a file called <code>c-button.scss</code> in the <code>scss/components</code> folder.</p>
+<p>Enter the contents:</p>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.c-button</span> {
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid white;
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#6f31de</span>;
+  <span class="hljs-attribute">color</span>: white;
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.1em</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0.5em</span>;
+}
+</div></code></pre>
+<p>Now we need to update our HTML again to use this class.</p>
+<p>In the file <code>Todo.js</code> update the button to the following:</p>
+<pre class="hljs"><code><div>&lt;form onSubmit={<span class="hljs-keyword">this</span>.addItemToTodo} className=<span class="hljs-string">'c-form'</span>&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">'c-form__input-group'</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">'text'</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">'What would you like to do?'</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{this.state.value}</span> <span class="hljs-attr">name</span>=<span class="hljs-string">'todoItem'</span> <span class="hljs-attr">autoComplete</span>=<span class="hljs-string">'off'</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.handleChange}</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">'submit'</span> <span class="hljs-attr">className</span>=<span class="hljs-string">'c-button'</span>&gt;</span>Add<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
+</div></code></pre>
+<p>Finally, we need to create a scss file for our <code>Todo.js</code> class which imports all the stylesheets we need specifically for this component.</p>
+</li>
+<li>
+<p>Create the file <code>todo.scss</code> in <code>/src/scss</code> and add the following:</p>
+<pre class="hljs"><code><div>@<span class="hljs-keyword">import</span> <span class="hljs-string">'./components/c-form.scss'</span>;
+@<span class="hljs-keyword">import</span> <span class="hljs-string">'./components/c-button.scss'</span>;
+</div></code></pre>
+</li>
+<li>
+<p>Import the new <code>todo.scss</code> stylesheet into our <code>Todo</code> component:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'./scss/todo.scss'</span>
+</div></code></pre>
+<p>Now when you go back to your browser you should see that our input field and button look a little better.  The rest of the app should continue to function as intended.</p>
+</li>
+</ol>
+<h3 id="adding-styling-to-todo-list">Adding styling to todo list</h3>
+<p>With our form out the way, we can now look at styling our todo list.</p>
+<ol>
+<li>
+<p>Create a file called <code>c-todo-item.scss</code> in the folder <code>src/scss/components/</code>:</p>
+<p>Enter the following contents in the newly created file:</p>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.c-todo-item</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">justify-content</span>: space-between;
+
+  &amp;__task {
+    <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">1rem</span>;
+  }
+
+  &amp;__<span class="hljs-selector-tag">content</span> {
+    <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">0.5em</span>;
+    <span class="hljs-attribute">font-weight</span>: bold;
+  }
+
+  &amp;__<span class="hljs-selector-tag">delete</span> {
+    <span class="hljs-attribute">color</span>: darkred;
+    <span class="hljs-attribute">padding-right</span>: <span class="hljs-number">1rem</span>;
+    <span class="hljs-attribute">border</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">background</span>: none;
+  }
+}
+</div></code></pre>
+</li>
+<li>
+<p>Create a <code>todo-item.scss</code> file in <code>src/scss/</code> and import the CSS components we need:</p>
+<pre class="hljs"><code><div>@<span class="hljs-keyword">import</span> <span class="hljs-string">"components/c-todo-item.scss"</span>;
+</div></code></pre>
+</li>
+<li>
+<p>Update the <code>TodoItem.js</code> file to make use of the new CSS classes:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">return</span> (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">'c-todo-item'</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">className</span>=<span class="hljs-string">'c-todo-item__task'</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">'checkbox'</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.markAsDone}</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{done}</span>&gt;</span>{item}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{deleteItem}</span> <span class="hljs-attr">className</span>=<span class="hljs-string">'c-todo-item__delete'</span> <span class="hljs-attr">data-behavior</span>=<span class="hljs-string">'delete'</span>&gt;</span>Delete<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+)
+</span></div></code></pre>
+</li>
+<li>
+<p>Update <code>TodoItem.js</code> to import it's stylesheet:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'./scss/todo-item.scss'</span>
+</div></code></pre>
+<p>Finally, let's refactor <code>TodoItem.js</code> a little to use a class for the strikethrough when a todo item is completed, rather than using the inline style we originally used.</p>
+</li>
+<li>
+<p>Create a folder called <code>utilities</code> in the <code>scss/</code> folder.</p>
+</li>
+<li>
+<p>Create the file <code>u-strikethrough.scss</code> in the folder <code>scss/utilities</code> and add the following:</p>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.u-strikethrough</span> {
+  <span class="hljs-attribute">text-decoration</span>: line-through;
+  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0.5</span>;
+}
+</div></code></pre>
+<p>Update <code>scss/todo-item.scss</code> to import the new utility class:</p>
+<pre class="hljs"><code><div>@<span class="hljs-keyword">import</span> <span class="hljs-string">"components/c-todo-item.scss"</span>;
+@<span class="hljs-keyword">import</span> <span class="hljs-string">"utilities/u-strikethrough.scss"</span>;
+</div></code></pre>
+</li>
+<li>
+<p>Refactor the todoItem <code>&lt;span&gt;</code> to use our new utility class rather than inline styling.</p>
+<pre class="hljs"><code><div>render () {
+  <span class="hljs-keyword">const</span> { done } = <span class="hljs-keyword">this</span>.state
+  <span class="hljs-keyword">const</span> { item, deleteItem } = <span class="hljs-keyword">this</span>.props
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">'c-todo-item'</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">className</span>=<span class="hljs-string">'c-todo-item__task'</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">'checkbox'</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.markAsDone}</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">{done}</span>&gt;</span>{item}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{deleteItem}</span> <span class="hljs-attr">className</span>=<span class="hljs-string">'c-todo-item__delete'</span> <span class="hljs-attr">data-behavior</span>=<span class="hljs-string">'delete'</span>&gt;</span>Delete<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  )
+}
+</span></div></code></pre>
+<p>As you'll see here, we are using the <code>classes</code> variable from our state to set the strikethrough class on the todo item text. So let's update our default state and function to update the classes when an item has been marked as done.</p>
+<p>Update the constructor:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">constructor</span> () {
+  <span class="hljs-keyword">super</span>()
+
+  <span class="hljs-keyword">this</span>.state = {
+    <span class="hljs-attr">done</span>: <span class="hljs-string">'c-todo-item__content'</span>
+  }
+
+  <span class="hljs-keyword">this</span>.markAsDone = <span class="hljs-keyword">this</span>.markAsDone.bind(<span class="hljs-keyword">this</span>)
+}
+</div></code></pre>
+<p>Update the <code>markAsDone()</code> function:</p>
+<pre class="hljs"><code><div>markAsDone (event) {
+  <span class="hljs-keyword">const</span> classes = event.target.checked ? <span class="hljs-string">'c-todo-item__content u-strikethrough'</span> : <span class="hljs-string">'c-todo-item__content'</span>
+
+  <span class="hljs-keyword">this</span>.setState({
+    <span class="hljs-attr">done</span>: classes
+  })
+}
+</div></code></pre>
+<p>You might notice a new pattern here: <code>true ? then : else</code>.  This is an inline if.  If the first part of the statement evaluates to <code>true</code>, in our case <code>event.target.checked</code>, then initiate the code after the <code>?</code>. If it evaluates to <code>false</code> then initiate the code after the <code>:</code>.</p>
+</li>
+<li>
+<p>Commit your changes and push to Github</p>
+</li>
+</ol>
+<h2 id="writing-tests">Writing tests</h2>
+<h3 id="why-it-is-important-to-write-automated-tests">Why it is important to write automated tests?</h3>
+<p>Bugs are a nature of software/web development, we are only human at the end of the day.  However, there is something we can do to try and minimise the number and scale of bugs.</p>
+<p>By writing automated tests for any code that we write, we can ensure that a feature works as intended. Additionally, we can ensure it fails as intended, if it receives incorrect information.  By having a test suite which makes these checks for us whenever we make changes to a code base, we can be confident that we haven't introduced any new bugs, or reintroduced old ones.</p>
+<p>This also allows for us to clean up old code so that it is more maintainable, readable and scalable in future, in a confident manner.</p>
+<p>Additionally, if something is hard to test, then more often than not it is because we have implemented code in a confusing manner and so having a test suite can also drive us forward by making code easier for us to read and change in future.</p>
+<h3 id="what-about-test-driven-development-tdd">What about Test Driven Development (TDD)?</h3>
+<p>TDD is the process of writing tests before any code has been implemented.  This can be extremely helpful in ensuring that the code we write does what is intended, is covered by tests and also allows for writing cleaner code from the start.  However, sometimes it can be hard to know what to test before you have figured out a solution for the problem.  Therefore, it may not always be possible to follow a TDD approach.  Being flexible with your approach is often the best approach.</p>
+<h2 id="snapshot-testing">Snapshot testing</h2>
+<p>First we are going to implement snapshot testing to ensure our components render correctly.  What snapshot testing does is render out any component(s) we select and creates a text file in the JSON format which represents all the data that the component comprises of and saves it for future reference.  If in future the saved snapshot and the new shapshot differ, our test suite will raise an error so that we can inspect the differences, determine if the change is intended (in this case we simply update the saved snapshot with the new one) or if it is a regression, in which case we can fix the regression until the two snapshots match again.</p>
+<h3 id="setting-up-the-test-suite">Setting up the test suite</h3>
+<ol>
+<li>Install dependencies <code>yarn add --dev react-test-renderer enzyme enzyme-adapter-react-16</code></li>
+<li>Configure <code>Jest</code> (the library we use for writing tests) to use <code>enzyme</code> (a library from Airbnb to make testing more convenient)
+<ul>
+<li>Create a file called <code>setupTests.js</code> in <code>/src</code>:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { configure } <span class="hljs-keyword">from</span> <span class="hljs-string">'enzyme'</span>
+<span class="hljs-keyword">import</span> Adapter <span class="hljs-keyword">from</span> <span class="hljs-string">'enzyme-adapter-react-16'</span>
+configure({ <span class="hljs-attr">adapter</span>: <span class="hljs-keyword">new</span> Adapter() })
+</div></code></pre>
+</li>
+<li>Create a <code>__tests__</code> folder in <code>/src</code></li>
+</ol>
+<h3 id="testing-the-todoitem-component">Testing the TodoItem component</h3>
+<ol>
+<li>
+<p>Rename <code>Todo.test.js</code> to <code>TodoItem.test.js</code>, move it to <code>__tests__</code> and replace the contents with the following:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> TodoItem <span class="hljs-keyword">from</span> <span class="hljs-string">'./TodoItem'</span>
+
+<span class="hljs-keyword">import</span> { shallow } <span class="hljs-keyword">from</span> <span class="hljs-string">'enzyme'</span>
+
+describe(<span class="hljs-string">'&lt;TodoItem /&gt;'</span>, () =&gt; {
+  it(<span class="hljs-string">'should match the snapshot'</span>, () =&gt; {
+    <span class="hljs-keyword">const</span> wrapper = shallow(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">TodoItem</span> /&gt;</span>)
+
+    expect(wrapper).toMatchSnapshot()
+  })
+})
+</span></div></code></pre>
+<p>Here we are importing the libraries we need for the test (react) and then the component we want to test, in this case <code>TodoItem</code>.  Then we import the <code>shallow</code> function from <code>enzyme</code> which allows us to render the <code>TodoItem</code> component and none of it's children and then check this against the snapshot for the test.</p>
+</li>
+<li>
+<p>If we now run our tests <code>yarn test</code> we should see that this test passes.</p>
+</li>
+</ol>
+<h3 id="testing-the-todo-component">Testing the Todo component</h3>
+<ol>
+<li>
+<p>Create a file called <code>Todo.test.js</code> in <code>__tests__</code></p>
+</li>
+<li>
+<p>Add the contents:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> Todo <span class="hljs-keyword">from</span> <span class="hljs-string">'./Todo'</span>
+
+<span class="hljs-keyword">import</span> { shallow, mount } <span class="hljs-keyword">from</span> <span class="hljs-string">'enzyme'</span>
+
+describe(<span class="hljs-string">'&lt;Todo /&gt;'</span>, () =&gt; {
+  it(<span class="hljs-string">'should match the snapshot'</span>, () =&gt; {
+    <span class="hljs-keyword">const</span> wrapper = shallow(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Todo</span> /&gt;</span>)
+
+    expect(wrapper).toMatchSnapshot()
+  })
+})
+</span></div></code></pre>
+<p>This code should not be fairly self explanitory, as it is very similar to our previous test.</p>
+</li>
+</ol>
+<h2 id="integration-tests">Integration tests</h2>
+<p>Integration tests allow us to write tests that interact with the code as if it were a human using it, this is important as it tells us whether or not the logic we have writted works as intended.</p>
+<ol>
+<li>
+<p>Now we should also add tests to ensure that the functionality of our todo app works as intended:</p>
+<p>Add the following under the first <code>it</code> block (&quot;should match the snapshot&quot;) in our <code>Todo.test.js</code> file:</p>
+<pre class="hljs"><code><div>...
+
+it(<span class="hljs-string">'should add a new item to the list'</span>, () =&gt; {
+  <span class="hljs-comment">// Load the whole component including it's children</span>
+  <span class="hljs-keyword">const</span> wrapper = mount(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Todo</span> /&gt;</span>)
+
+  // Find the input field
+  const input = wrapper.find('[name="todoItem"]')
+
+  // Type in the word 'test'
+  input.simulate('change', { target: { value: 'test' } })
+
+  // Find our 'Add' button and click it
+  const button = wrapper.find('[type="submit"]')
+  button.simulate('submit')
+
+  // There should now be a todo item in the list
+  expect(wrapper.find('.c-todo-item__content').text()).toEqual('test')
+})
+
+it('should mark the item as done', () =&gt; {
+  const wrapper = mount(<span class="hljs-tag">&lt;<span class="hljs-name">Todo</span> /&gt;</span>)
+
+  const input = wrapper.find('[name="todoItem"]')
+  input.simulate('change', { target: { value: 'test' } })
+  const button = wrapper.find('[type="submit"]')
+  button.simulate('submit')
+
+  // Find the checkbox for our todo item and click it
+  const checkbox = wrapper.find('[type="checkbox"]')
+  checkbox.simulate('click', { target: { checked: true } })
+
+  // It should now be marked as done
+  expect(wrapper.find('span').hasClass('u-strikethrough')).toEqual(true)
+})
+
+it('should remove the todo item', () =&gt; {
+  const wrapper = mount(<span class="hljs-tag">&lt;<span class="hljs-name">Todo</span> /&gt;</span>)
+
+  const input = wrapper.find('[name="todoItem"]')
+  input.simulate('change', { target: { value: 'test' } })
+  const button = wrapper.find('[type="submit"]')
+  button.simulate('submit')
+
+  expect(wrapper.find('span').length).toEqual(1)
+  
+  // Click the delete button for the todo item
+  const del = wrapper.find('[data-behavior="delete"]')
+  del.simulate('click')
+
+  // It should now have been removed
+  expect(wrapper.find('span').length).toEqual(0)
+})
+
+...
+</span></div></code></pre>
+</li>
+<li>
+<p>If we now run our tests: <code>yarn test</code>, we should see that these tests also pass.</p>
+</li>
+<li>
+<p>Commit your changes and push to GitHub.</p>
+</li>
+<li>
+<p>Now that we have our basic functionality complete with styling and tests we can merge this work back into our <code>master</code> branch.</p>
+<ul>
+<li>Log in to GitHub and navigate to your repository.  <a href="https://help.github.com/articles/creating-a-pull-request/">Create a Pull Request</a>, check your work by looking through the <code>files</code> tab and then <a href="https://help.github.com/articles/merging-a-pull-request/">merge it into Master</a>.</li>
+</ul>
+</li>
+<li>
+<p>Pull these changes down onto your local machine for further development.</p>
+<ul>
+<li>Go back to your terminal where you pushed your changes to GitHub.</li>
+<li>Switch back to your <code>master</code> branch: <code>git checkout master</code></li>
+<li>Pull down the changes from GitHub: <code>git pull origin master</code></li>
+<li>You should see the list of files that have been changed printed out in the terminal.  If you now go back to Visual Studio Code, you should see those changes reflected in your project.</li>
+</ul>
+</li>
+</ol>
+<h1 id="extensions">Extensions</h1>
+<p>Now that you have had a basic introduction to web development with ReactJS, here are some extensions for you to try (listed in order of difficulty):</p>
+<ul>
+<li>Update the CSS using media queries to make the app look good on both tablets and desktop screens</li>
+<li>Change all of the CSS to your own design</li>
+<li>Add CSS animations for adding todo items, marking them as complete and deleting them</li>
+<li>Implement GraphQL (Apollo is a good client for making requests, graphcool is a good service for deploying a graphql server) to save your todo items so that you don't lose them if you refresh the page or close the browser</li>
+<li>Add the concept of labels, so that you can classify your todos and filter by label</li>
+<li>Build something of your own in ReactJS!</li>
+</ul>
+
+</body>
+</html>
