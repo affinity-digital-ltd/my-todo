@@ -183,7 +183,7 @@ Now that we have everything in place we need to start building our app, let's st
     ``` 
     Otherwise our app will fail and raise an error as the files no longer exist.
 
-6. Inside `Todo.js` rename any references from `App` to `Todo`, there should be 2
+6. Inside `Todo.js` rename any references from `App` to `Todo`, there should be 3.
 
 7. Save the file
 
@@ -209,7 +209,7 @@ Now that we have everything in place we need to start building our app, let's st
 
     You should also now see in your browser, where we have removed the logo and styling of the default app:
     ```
-    Edit src/App.js and save to reload.
+    Edit src/Todo.js and save to reload.
 
     Learn React
     ```
@@ -272,12 +272,12 @@ Here we are setting the state to an object which has a key called 'todos' (which
 We have also added the 'value' key to our state, as this will log the todo item value from our input field.
 
 6. Now we need to create a function that will get called when we click the button 'Add', to update this state with a new item and a function that will get called when we type text into the input field.
-    - We'll call the first function `addItemToList()` so that it is clear as to what it actually does.
+    - We'll call the first function `addItemToTodo()` so that it is clear as to what it actually does.
     - This will then add the item we type in the input field into the 'todos' key of our React state.
     - The second function will be `handleChange()` which will log what is typed into the input field.
     - Then we will need to update our `render()` function to display these items on the page.
 
-7. Create the function `addItemToList()` and `handleChange()` below your `constructor()` function:
+7. Create the function `addItemToTodo()` and `handleChange()` below your `constructor()` function:
     ```javascript
     constructor () {
     ...
@@ -501,7 +501,7 @@ We have also added the 'value' key to our state, as this will log the todo item 
 
 2. Create a new class called `TodoItem` which extends `Component` and add a `render()` funtion.
     ```javascript
-    import { Component } from 'react'
+    import React, { Component } from 'react'
 
     class TodoItem extends Component {
       render () {
@@ -591,7 +591,7 @@ We have also added the 'value' key to our state, as this will log the todo item 
       const { item } = this.props
 
       return <span style={done}> 
-        <input onClick={markAsDone} type='checkbox' name='todoItem' /> {item}
+        <input onClick={this.markAsDone} type='checkbox' name='todoItem' /> {item}
       </span>
     }
     ...
@@ -1027,7 +1027,7 @@ First we are going to implement snapshot testing to ensure our components render
 1. Rename `Todo.test.js` to `TodoItem.test.js`, move it to `__tests__` and replace the contents with the following:
     ```javascript
     import React from 'react'
-    import TodoItem from './TodoItem'
+    import TodoItem from '../TodoItem'
 
     import { shallow } from 'enzyme'
 
@@ -1051,7 +1051,7 @@ First we are going to implement snapshot testing to ensure our components render
 2. Add the contents:
     ```javascript
     import React from 'react'
-    import Todo from './Todo'
+    import Todo from '../Todo'
 
     import { shallow, mount } from 'enzyme'
 
